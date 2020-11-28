@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="servlet,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="servlet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《servlet&amp;jsp学习笔记》学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/11/28/《servlet-jsp学习笔记》学习笔记/index.html">
+<meta property="og:site_name" content="MTHGH">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128102545893.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020112810292148.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128103052211.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020112810341848.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020112810345843.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128103528890.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020112810360269.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128103633963.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128103705778.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128103933399.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104050755.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104100556.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104107825.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104214407.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104349414.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104357896.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104449933.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104458461.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201128104555790.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:updated_time" content="2020-11-28T02:55:50.398Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《servlet&amp;jsp学习笔记》学习笔记">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201128102545893.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/11/28/《servlet-jsp学习笔记》学习笔记/">
+
+
+
+
+
+  <title>《servlet&jsp学习笔记》学习笔记 | MTHGH</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MTHGH</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/28/《servlet-jsp学习笔记》学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Yu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/head-picture.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MTHGH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《servlet&jsp学习笔记》学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-28T10:51:25+08:00">
+                2020-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/servlet/" itemprop="url" rel="index">
+                    <span itemprop="name">servlet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><font color="red">本书仅前5章为重点，最重要的也就是3、4、5，但前两章介绍了servlet的作用，也很重要<br> <img src="https://img-blog.csdnimg.cn/20201128102545893.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>需要重点认识的几个类：HttpServletRequest、HttpServletResponse、HttpSession以及ServletContext<br>重点搞清楚原理知识，比如一个HTTP请求发送至Tomcat服务器，接下来后续的一系列处理步骤是怎么样的？</font></p>
+<h2 id="第一章："><a href="#第一章：" class="headerlink" title="第一章："></a>第一章：</h2><p>了解HTML、HTTP、URI、URL的基本概念：<br>通俗理解：URL是RUI的子集。URL：指以文字方式说明互联网上的资源如何获得。</p>
+<p>浏览器与web网站之间的沟通方式是http协议，它有两个基本单极为重要的特性：<br>（1）    基于请求（Request）/响应（Response）模型<br>（2）    无状态（Stateless）协议：web网站响应客户端之后，就不会记得客户端的信息</p>
+<p>Web容器（Container）是Servlet/JSP唯一认得的HTTP服务器。如果希望用Servlet/JSP编写Web应用程序可以正常运行，就必须知道Servlet/JSP如何与Web容器沟通，We容器如何管理Servlet/JSP的各种对象等问题。</p>
+<p>对于Java而言，JVM是其操作系统，.java文件会编译为.class文件，.class对于JVM而言，就是其可执行文件。Java程序基本上只认得一种操作系统，那就是JVM。</p>
+<p>对于编写Servlet/JSP来说，容器的概念更广，它不仅持有对象，还负责对象的生命周期与相关服务的连接。</p>
+<p>编写Servlet时，会接触HttpServletRequest、HttpServletReponse等对象，想想看，HTTP那些文字性的通信协议，如何变成Servlet/JSP中可用的Java对象，其实就是容器中的剖析与转换。Tomcat就是一种Web容器。</p>
+<p><font color="red">Servlet与JSP/Thymeleaf实际上是一体两面，JSP/Thymeleaf会被Web容器转译为Servlet的.java源代码、编译为.class文件，然后加载容器，因此最后提供服务的还是Servlet实例。<br> <img src="https://img-blog.csdnimg.cn/2020112810292148.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>上图内容需要背下来。</font></p>
+<p>在Java的Web开发这块，一些重大Web框架，例如SPringle Mvc，仍是基于Servlet，如果能掌握Servlet，在使用这类框架时，对理解底层细节或者进行框架细节控制会有很大帮助。</p>
+<p>MVC：model、view、controller—模型、视图、控制器<br>将MVC概念应用到Web应用程序的设计上来：<br>（1）视图部分可由网页来实现<br>（2）服务器上的数据访问或业务逻辑由模型负责<br>（3）控制器接受浏览器的请求，决定调用哪些模型来处理</p>
+<p>Servlet/JSP属于Java EE的范畴。</p>
+<h2 id="第二章："><a href="#第二章：" class="headerlink" title="第二章："></a>第二章：</h2><p>Protected void doGet(HttpServletRequest request,<br>HttpServletReponse reponse)<br>{<br>    //todo<br>}<br><font color="red">在doGet()方法上可以看到HttpServletRequest与HttpServletReponse两个参数，容器接收到浏览器的HTTP请求后，会收集HTTP请求中的信息，并分别创建代表请求与响应的Java对象，而后在调用doGet()方法时将这两个对象作为参数传入。可以从HttpServletRequest对象中取得有关HTTP请求的相关信息，在范例中是通过HttpServletRequest的getParameter()并指定请求参数名称，来取得用户发送的请求参数值。（Spring中的控制器方法与之类似）<br> <img src="https://img-blog.csdnimg.cn/20201128103052211.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>与Servlet定义相关的类或接口都位于javax.servlet包中，如Servlet、GenericServlet、ServletRequest、ServletReponse等。而与HTTP定义相关的类或接口都位于javax.servlet.http包中，如HttpServlet、HttpServletRequest、HttpServletReponse等。</font></p>
+<p>当应用程序启动后，并没有创建所有的Servlet实例。容器会在首次接到请求需要某个Servlet服务时，才将对应的Servlet类实例化、进行初始化操作，接着再处理请求。这意味着第一次请求该Servlet的浏览器，必须等待Servlet类实例化、进行初始化动作之后，才真正得到请求的处理。</p>
+<h2 id="第三章："><a href="#第三章：" class="headerlink" title="第三章："></a>第三章：</h2><h3 id="1-从容器到HttpServlet（重点）"><a href="#1-从容器到HttpServlet（重点）" class="headerlink" title="1.从容器到HttpServlet（重点）"></a>1.从容器到HttpServlet（<font color="red">重点</font>）</h3><p>当从浏览器发出的请求来到HTTP服务器，而HTTP服务器转交请求给容器时，容器会创建一个代表当前请求的HttpServletRequest对象，并将请求相关信息设置给该对象。同时，容器会创建一个HttpServletResponse对象，作为稍后要对浏览器进行响应的Java对象，如下图所示：<br> <img src="https://img-blog.csdnimg.cn/2020112810341848.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>如果查询HttpServletRequest、HttpServletResponse的API文档，会发现它们都是接口（interface），而实现这些接口的相关实现类就是由容器提供的。还记得吗？Web容器本身就是一个Java编写的应用程序。<br>    接着，容器会根据@WebServlet标注或web.xml的设置，找出处理该请求的Servlet，调用它的service()方法，将创建的HttpServletRequest对象、HttpServletResponse对象传入作为参数，service()方法中会根据HTTP请求的方式，调用对应的doXXX()方法。例如，若为GET，则调用doGet()方法。<br> <img src="https://img-blog.csdnimg.cn/2020112810345843.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201128103528890.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020112810360269.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="2-关于HttpServletRequest"><a href="#2-关于HttpServletRequest" class="headerlink" title="2.关于HttpServletRequest"></a>2.关于HttpServletRequest</h3><p>处理请求参数：请求来到服务器时，Web容器会创建HttpServletRequest实例来包装请求中的相关信息，HttpServletRequest定义了取得请求信息的方法。如：可以使用一下方法取得请求参数：<br> <img src="https://img-blog.csdnimg.cn/20201128103633963.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201128103705778.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>HttpServletRequest定义有<strong>getReader()</strong>方法，可以取得一个<strong>BufferedReader</strong>，通过该对象可以读取请求的Body数据。<br><strong>getPart()</strong>、<strong>getParts()</strong>取得上传文件：<br>从上一节使用getInputStream()处理文件上传相关事宜中可以看出，处理过程比较琐碎，在Servlet3.0中，新增了<strong>Part</strong>接口，可以方便的进行文件上传处理。可以通过HttpServletRequest的getPart()方法取得Part实现对象。</p>
+<p>使用RequestDispatcher调派请求：<br>1.使用include()方法：RequestDispatcher的include()方法，可以将另一个Servlet的操作流程包括至目前Servlet操作流程之中。<br>2.在include()或forward()时包括请求参数的做法，<font color="red">仅适用于传递字符串值给另一个Servlet，在调派请求的过程中，如果有必须共享的“对象”，可以设置给请求对象成为属性，称为<font color="gree">请求范围属性</font>（在自己的项目里用的最多的技术点：且它是HttpServletRequest类对象所具有的方法，HttpServletReponse是不具有该方法的）</font>。—》上面说include()或forward()方法仅使用于传递字符串，所以如果想要传递对象，则可以将对象设置为请求范围属性，以供不同的servlet相互协同工作，前面说过了，前端（JSP/Thymeleaf）实际上也是servlet，所以我们在后端往往可以将对象设置为请求范围属性，然后前端从该属性拿值并显示在前端页面上。<br> <img src="https://img-blog.csdnimg.cn/20201128103933399.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>3.RequestDispatcher有个forward()方法，调用时同样传入请求与响应对象，这表示要将请求处理转发给别的Servlet，“对浏览器的响应同时转发给另一个Servlet”</p>
+<h3 id="3-关于HttpServletResponse"><a href="#3-关于HttpServletResponse" class="headerlink" title="3.关于HttpServletResponse"></a>3.关于HttpServletResponse</h3><p> <img src="https://img-blog.csdnimg.cn/20201128104050755.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201128104100556.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201128104107825.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>使用getWriter()输出字符：</strong></p>
+<ol>
+<li>设置Locale<br>获取或设置相应的地区信息。</li>
+<li>使用setCharacterEncoding()或setConentType()<br>设置编码方式（如：UTF-8）</li>
+</ol>
+<p><strong>使用getOutputStream()输出二进制字符</strong></p>
+<p><strong>使用sendRedirect()、sendError()：</strong><br> <img src="https://img-blog.csdnimg.cn/20201128104214407.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="第四章："><a href="#第四章：" class="headerlink" title="第四章："></a>第四章：</h2><p>Web应用程序的请求与相应是基于HTTP，为<font color="red">无状态的通信协议</font>，服务器不会“记得”这次请求与下一次请求之间的联系。而有些功能必须由多次请求来完成，如：购物车等，这种记得此次请求与之后请求间关系的方式，就称为会话管理（session management）</p>
+<h3 id="1-先介绍几个实现会话管理的基本方式"><a href="#1-先介绍几个实现会话管理的基本方式" class="headerlink" title="1.先介绍几个实现会话管理的基本方式"></a>1.先介绍几个实现会话管理的基本方式</h3><p><strong>（1）隐藏域（并不是Servlet/JSP实际管理会话时的机制）</strong><br>隐藏域不是Servlet/JSP实际管理会话时的机制，此处讲解隐藏域，只是为了说明，由浏览器主动告诉必要的信息，为实现Web应用程序会话管理的基本原理。<br><strong>（2）Cookie</strong><br><img src="https://img-blog.csdnimg.cn/20201128104349414.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201128104357896.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>（3）URI重写</strong></p>
+<h3 id="2-HttpSession会话管理"><a href="#2-HttpSession会话管理" class="headerlink" title="2.HttpSession会话管理"></a>2.HttpSession会话管理</h3><p> <img src="https://img-blog.csdnimg.cn/20201128104449933.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201128104458461.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>如果想在会话期间让目前的HttpSession失效，可以执行HttpSession的<strong>invalidate()</strong>方法，一个使用的时机就是实现注销机制，调用该方法后，容器会销毁回收HttpSession。</p>
+<p>基于Web安全考虑，建议在登录成功后改变SessionID，可以通过HttpServletRequest上新增的<strong>changeSessionId()</strong>来达到。<br> <img src="https://img-blog.csdnimg.cn/20201128104555790.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>HttpSession默认失效时间，也可以通过ServletContext的setSessionTimeOut()来设定。</p>
+<h2 id="第五章："><a href="#第五章：" class="headerlink" title="第五章："></a>第五章：</h2><h3 id="1-Servlet进阶API"><a href="#1-Servlet进阶API" class="headerlink" title="1.Servlet进阶API"></a>1.Servlet进阶API</h3><p>ServletConfig相当于个别Servlet的设置信息代表对象，这意味着可以从ServletConfig取得Servlet设置信息。ServletConfig定义了getInitParameter()、getInitParameterNames()方法，可以取得设置Servlet时的初始参数。</p>
+<p>ServletContext接口定义了运行Servlet的应用程序环境的一些行为与观点，可以使用ServletContext实现对象取得所请求资源的URL、设置与存储属性、应用程序初始参数，甚至动态设置Servlet实例。当整个Web应用程序加载Web容器后，容器会生成一个ServletContext对象，作为整个应用程序的代表，并设置给ServletConfig，只要通过ServletConfig的getServletContext()方法就可以取得ServletContext对象。</p>
+<p>ServletContext对象常见方法：<br>1.getRequestDispatcher()<br>用于获取RequestDispatcher实例。<br>2.getResourcePaths()<br>如果想知道Web应用程序的某个目录中有哪些文件，则可以使用getResourcePaths()方法，它会传回Set<string>实例，包含了指定文件夹中的文件。</string></p>
+<p>3.getResourceAsStream()<br>该方法用于读取Web应用程序中某个文件的内容。</p>
+<h3 id="2-监听器"><a href="#2-监听器" class="headerlink" title="2.监听器"></a>2.监听器</h3><p>监听器的作用：即当HttpServletRequest对象、HttpSession对象、ServletContext对象在生成、销毁或相关属性设置发生的时机点有兴趣，可以实现对应的监听器，在对应的时机点发生时，Web容器就会调用监听器上相应的方法，让用户在对应的时机点做些什么。</p>
+<h3 id="3-过滤器"><a href="#3-过滤器" class="headerlink" title="3.过滤器"></a>3.过滤器</h3><p>作用：用于拦截浏览器对Servlet的请求，也可以改变Servlet对浏览器的响应</p>
+<h3 id="Spring核心："><a href="#Spring核心：" class="headerlink" title="Spring核心："></a>Spring核心：</h3><p>@Configuration标注的类，在通过Spring的处理后，在角色上真的就如配置文件，在某些行为上并不是Java程序该有的行为。<br>@Bean标注告诉Spring，该方法放回的实例会作为bean组件。<br>@ComponentScan标注，使用了该标注，Spring会自动扫描同一包或其子包下，是否有Bean组件的存在。<br>@Component标注的类也会被Spring作为bean进行管理<br>@Autowired注解：实现依赖注入的注解</p>
+<p>Spring的控制器没有继承任何类或操作任接口，但是控制器方法的参数可以有HttpServletRequest、HttpServletResponse，这是因为Spring MVC会管理相关的Servlet对象，若发现控制器的方法上有HttpServletRequest、HttpServletResponse对应的类型，在调用时就会自动注入。</p>
+<p>参看文献：《servlet&amp;jsp学习笔记》-林信良</p>
+      
+    </div>
+    
+    
+    
+
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  
+	</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/servlet/" rel="tag"># servlet</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/04/实习篇-学习ruoyi项目/" rel="next" title="实习篇-学习ruoyi项目（一）">
+                <i class="fa fa-chevron-left"></i> 实习篇-学习ruoyi项目（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head-picture.jpg" alt="Mr.Yu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章："><span class="nav-number">2.</span> <span class="nav-text">第一章：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章："><span class="nav-number">3.</span> <span class="nav-text">第二章：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章："><span class="nav-number">4.</span> <span class="nav-text">第三章：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-从容器到HttpServlet（重点）"><span class="nav-number">4.1.</span> <span class="nav-text">1.从容器到HttpServlet（重点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-关于HttpServletRequest"><span class="nav-number">4.2.</span> <span class="nav-text">2.关于HttpServletRequest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-关于HttpServletResponse"><span class="nav-number">4.3.</span> <span class="nav-text">3.关于HttpServletResponse</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章："><span class="nav-number">5.</span> <span class="nav-text">第四章：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-先介绍几个实现会话管理的基本方式"><span class="nav-number">5.1.</span> <span class="nav-text">1.先介绍几个实现会话管理的基本方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-HttpSession会话管理"><span class="nav-number">5.2.</span> <span class="nav-text">2.HttpSession会话管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章："><span class="nav-number">6.</span> <span class="nav-text">第五章：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Servlet进阶API"><span class="nav-number">6.1.</span> <span class="nav-text">1.Servlet进阶API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-监听器"><span class="nav-number">6.2.</span> <span class="nav-text">2.监听器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-过滤器"><span class="nav-number">6.3.</span> <span class="nav-text">3.过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring核心："><span class="nav-number">6.4.</span> <span class="nav-text">Spring核心：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Yu</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
