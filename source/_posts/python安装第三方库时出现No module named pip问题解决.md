@@ -1,5 +1,5 @@
 ---
-title: 123
+title: python安装第三方库时出现No module named pip问题解决
 date: 2020-07-04 12:24:25
 categories:
 - python第三方库安装
