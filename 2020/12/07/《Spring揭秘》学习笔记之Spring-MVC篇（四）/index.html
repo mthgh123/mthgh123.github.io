@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Spring揭秘》学习笔记之Spring MVC篇（四）">
+<meta property="og:url" content="http://yoursite.com/2020/12/07/《Spring揭秘》学习笔记之Spring-MVC篇（四）/index.html">
+<meta property="og:site_name" content="MTHGH">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201207191402704.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201207201039424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201207201055240.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201207201151575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201207201200195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201207201233505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201207201253622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:updated_time" content="2020-12-07T12:36:45.787Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Spring揭秘》学习笔记之Spring MVC篇（四）">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201207191402704.png#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/12/07/《Spring揭秘》学习笔记之Spring-MVC篇（四）/">
+
+
+
+
+
+  <title>《Spring揭秘》学习笔记之Spring MVC篇（四） | MTHGH</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MTHGH</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/07/《Spring揭秘》学习笔记之Spring-MVC篇（四）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Yu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/head-picture.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MTHGH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Spring揭秘》学习笔记之Spring MVC篇（四）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-07T20:22:48+08:00">
+                2020-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《Spring揭秘》学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">《Spring揭秘》学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>该部分为学习《Spring揭秘》后第26章的学习笔记，主要是Spring MVC部分的内容，这也是spring MVC系列篇博客的收官之作。</p>
+<h2 id="第26章："><a href="#第26章：" class="headerlink" title="第26章："></a>第26章：</h2><h3 id="26-1-初识基于注解的Controller"><a href="#26-1-初识基于注解的Controller" class="headerlink" title="26.1 初识基于注解的Controller"></a>26.1 初识基于注解的Controller</h3><p>在Spring MVC框架中，传统的Handler类型，比如Controller或者ThrowawayController，都需要具体实现类继承某个基类或者实现某个接口。而使用基于注解的Controller的话，则没有这样的限制。（spring boot中就是这样的）</p>
+<p>传统的Controller或者ThrowawayController通过接口类型作为标志的方式，基于注解的Controller则采用标注于具体实现类上的某种类型的注解作为标志，比如使用：@Controller和@RequestMapping两种类型的注解来标注该类。</p>
+<p>标注了相应的注解并启动项目，通过@ComponentScan对相应包进行扫描之后，剩下的事情，像如何获取并调用这些基本注解的Controller等，就由Spring MVC框架帮我们全部揽下来了。<font color="oranage">对于下方图所示的：/helloAnnoController.anno形式的请求，Spring MVC将使用AnyTypeYouLikeController作为处理请求的Handler，并调用其标注了@RequestMapping的processWebRequest()方法进行当前Web请求的处理。</font><br> <img src="https://img-blog.csdnimg.cn/20201207191402704.png#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="26-2-基于注解的Controller原型分析"><a href="#26-2-基于注解的Controller原型分析" class="headerlink" title="26.2 基于注解的Controller原型分析"></a>26.2 基于注解的Controller原型分析</h3><p>需要搞清两个问题：<br>1.如何让Spring MVC框架类（其实就是DispatcherServlet）知道当前Web请求应该由哪个基于主机的Controller处理？<br>2.如何让Spring MVC框架类知道调用基于注解的Controller的哪个方法来处理具体的Web请求？</p>
+<p>26.2.1 自定义用于基于注解的Controller的HandlerMapping<br>在基于注解的Controller中，当前实现类将用于哪个Web请求的处理是由相应的注解标注的。比如，@RequestMapping(“/helloAnnotation.anno”)标注的AnyTypeYouLikeController将用于处理URL为“/helloAnnotation.anno”的Web请求。<font color="red">这些注解中的信息，我们需要通过Java的反射机制来读取。</font><br>所以，我们不得不为基于注解的Controller提供特定的HandlerMapping实现。<font color="oranage"><strong>其基本实现思想是：遍历所有可用的基于注解的Controller实现类，然后根据web请求的路径信息，与实现类中的注解所标注的请求处理映射信息进行对比。如果当前基于注解的Controller实现类的注解所包含的信息与web请求的路径信息相匹配，那么就返回当前这一基于注解的Controller实现类即可。</strong></font>Spring 2.5中基于注解的Controller依赖于官方给出的HandlerMapping接口实现类：org.springframework.web.servlet.mvc.annotation.Defa-ultAnnotationHandlerMapping。其主要方法getHandler()的实现原理与我们上述的基本实现思想几乎差不多：它会首先扫描应用程序的Classpath，通过反射获取所有标注了@Controller的对象，当web请求到来后，通过实现了上述思路的getHandler()方法获取对应得handler。</p>
+<h4 id="26-2-2-自定义用于基于注解得Controller得HandlerAdaptor"><a href="#26-2-2-自定义用于基于注解得Controller得HandlerAdaptor" class="headerlink" title="26.2.2 自定义用于基于注解得Controller得HandlerAdaptor"></a>26.2.2 自定义用于基于注解得Controller得HandlerAdaptor</h4><p>HandlerMapping返回了处理Web请求得某个基于注解得Controller实例。而DispatcherServlet并不知道应该去调用该实例的哪个方法来处理Web请求。为了能够以统一的方式调用各种类型的Handler，DispatcherServlet需要一个针对基于注解的Controller的HandlerAdaptor实现。与DefaultAnnotationHandlerMapping能够使用反射获取相应注解信息这一做法类似，针对基于注解的Controller的HandlerAdaptor原型实现，同样可以如法炮制，只要通过反射查找标注了@RequestMapping的方法定义，然后通过反射调用该方法，并返回DispatcherServlet所需要的ModelAndView即可。</p>
+<p>HandlerAdaptor需要解决哪些问题？<br> <img src="https://img-blog.csdnimg.cn/20201207201039424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201207201055240.png#pic_center" alt="在这里插入图片描述"></p>
+<p>说了这么多，实际上就一个目的，实现一个针对基于注解的Controller的HandlerAdaptor的目的是明确的，<font color="red"><strong>那就是将请求信息绑定到具体的Controller实例</strong></font>，然后调用相应的处理方法，并将返回结果以ModelAndView的形式返回给DispatcherServlet使用。<br>Spring 2.5中为基于注解的Controller提供的HandlerAdaptor实现类是org.springframework.web.servlet.mvc.annotation.AnnotationMe-thodHandlerAdaptor。该类为我们考虑了以上提到的几乎所有问题，甚至还要更全面。默认情况下，2.5版本的DispatcherServlet将在初始化的时候就实例化一个AnnotationMethodHandlerAdaptor，用于支持基于注解的Controller。</p>
+<h3 id="26-3-近看基于注解的Controller"><a href="#26-3-近看基于注解的Controller" class="headerlink" title="26.3 近看基于注解的Controller"></a>26.3 近看基于注解的Controller</h3><h4 id="26-3-1-声明基于注解的Controller"><a href="#26-3-1-声明基于注解的Controller" class="headerlink" title="26.3.1 声明基于注解的Controller"></a>26.3.1 声明基于注解的Controller</h4><p>1.再谈@Controller<br>要想使一个普通的对象定义成为Spring MVC框架使用的基于注解的Controller，需要用@Controller这个注解进行标注。<br>@Controller是基于注解的Controller的身份象征，它主要有如下两个作用：<br>（1）使用<a href="context:component-scan/" target="_blank" rel="noopener">context:component-scan/</a>之后，标注了的对象可以被纳入Spring IoC容器进行管理，这样，就可以为其提供依赖注入等服务。（实现在spring的web.xml中标注<a href="context:component-scan/" target="_blank" rel="noopener">context:component-scan/</a>的功能是在spring boot的启动类上标注：@SpringBootApplication注解，该注释包含@ComponentScan注解的功能）<br>（2）在DefaultAnnotationHandlerMapping查找对应的Controller以处理当前Web请求的时候，可以将标注了@Controller的对象列入被考虑的范畴。</p>
+<p>2.@RequestMapping详解<br>@RequestMapping可以被标注于类型声明或者方法声明上。如果声明在类型定义上，那么@RequestMapping通常作为请求处理映射信息的提供者。如果声明在方法定义上，那么@RequestMapping更多的是为了表明当前方法定义是一个Web请求处理方法。简单点说就是：标注于类型定义的@RequestMapping提供映射信息，标注在方法定义的@RequestMapping标志具体的请求处理方法。</p>
+<p>标注在方法上的@RequestMapping除了提供一个映射信息外，还可以提供额外两个属性，一个是method属性，用于标识接受的web请求方法是get还是post，另一个是params属性。</p>
+<p>3.请求处理方法签名规则说明<br> <img src="https://img-blog.csdnimg.cn/20201207201151575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201207201200195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>使用@RequestParam或者@ModelAttribute所标注的方法参数。相应方法参数将根据这两个注解的语义获得相应的对象值。<br> <img src="https://img-blog.csdnimg.cn/20201207201233505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="26-3-2-请求参数到方法参数的绑定"><a href="#26-3-2-请求参数到方法参数的绑定" class="headerlink" title="26.3.2 请求参数到方法参数的绑定"></a>26.3.2 请求参数到方法参数的绑定</h4><p>1.默认绑定行为<br>默认绑定行为是指根据名称匹配原则进行的数据绑定。当请求中的参数与方法参数名称一致的时候，相应的参数值将被绑定到对应的方法参数上。而一旦名字稍有差异，将会绑定数据失败并产生异常。<br>2.使用@RequestParam明确地指出绑定关系<br> <img src="https://img-blog.csdnimg.cn/20201207201253622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>默认情况下，如果@RequestParam所指的请求参数不存在，绑定过程中将抛出异常。这是由@RequestParam的required属性决定的，它的默认值为true，要求指定的请求参数必须存在。当然，当指定其为false时，则此参数可以不绑定。</p>
+<h4 id="26-3-3-使用-ModelAttribute访问模型数据"><a href="#26-3-3-使用-ModelAttribute访问模型数据" class="headerlink" title="26.3.3 使用@ModelAttribute访问模型数据"></a>26.3.3 使用@ModelAttribute访问模型数据</h4><p>Spring 2.5之后，使用@Autowired注解来实现依赖注入，这样就可以避免通过XML配置来完成依赖注入关系的确定。<br><font color="red"><strong>如果将@ModelAttribute标注在某个方法上，该方法所返回的数据将添加到模型数据中。（所谓的添加到模型数据中，即添加到ModelMap中，在我自己的springBoot项目中，是通过使用request.setAttribute(“key”,value)方法来存储模型数据的，然后在.html页面直接通过key来取模型数据并显示。即此处的@ModelAttribute注释实现的功能与自己项目中的request.setAttribute(“key”,value)实现的功能是一样的。）</strong></font></p>
+<h4 id="26-3-4-通过-SessionAttribute管理Session数据"><a href="#26-3-4-通过-SessionAttribute管理Session数据" class="headerlink" title="26.3.4 通过@SessionAttribute管理Session数据"></a>26.3.4 通过@SessionAttribute管理Session数据</h4><p>在你自己的springBoot项目中，是通过设定方法参数HttpSession session然后来对session进行管理的。而此处是通过@SessionAttribute来实现对session的管理工作。</p>
+<p>参考文献：《Spring揭秘》王福强-著</p>
+      
+    </div>
+    
+    
+    
+
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  
+	</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/07/《Spring揭秘》学习笔记之Spring-MVC篇（三）/" rel="next" title="《Spring揭秘》学习笔记之Spring MVC篇（三）">
+                <i class="fa fa-chevron-left"></i> 《Spring揭秘》学习笔记之Spring MVC篇（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head-picture.jpg" alt="Mr.Yu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第26章："><span class="nav-number">2.</span> <span class="nav-text">第26章：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#26-1-初识基于注解的Controller"><span class="nav-number">2.1.</span> <span class="nav-text">26.1 初识基于注解的Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-2-基于注解的Controller原型分析"><span class="nav-number">2.2.</span> <span class="nav-text">26.2 基于注解的Controller原型分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#26-2-2-自定义用于基于注解得Controller得HandlerAdaptor"><span class="nav-number">2.2.1.</span> <span class="nav-text">26.2.2 自定义用于基于注解得Controller得HandlerAdaptor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-3-近看基于注解的Controller"><span class="nav-number">2.3.</span> <span class="nav-text">26.3 近看基于注解的Controller</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#26-3-1-声明基于注解的Controller"><span class="nav-number">2.3.1.</span> <span class="nav-text">26.3.1 声明基于注解的Controller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-3-2-请求参数到方法参数的绑定"><span class="nav-number">2.3.2.</span> <span class="nav-text">26.3.2 请求参数到方法参数的绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-3-3-使用-ModelAttribute访问模型数据"><span class="nav-number">2.3.3.</span> <span class="nav-text">26.3.3 使用@ModelAttribute访问模型数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-3-4-通过-SessionAttribute管理Session数据"><span class="nav-number">2.3.4.</span> <span class="nav-text">26.3.4 通过@SessionAttribute管理Session数据</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Yu</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
