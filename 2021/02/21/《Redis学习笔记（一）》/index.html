@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Redis,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Redis学习笔记（一）》">
+<meta property="og:url" content="http://yoursite.com/2021/02/21/《Redis学习笔记（一）》/index.html">
+<meta property="og:site_name" content="MTHGH">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301162709871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301162732317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021030116285011.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301162855500.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301162904183.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301162944356.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301163008587.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301163720179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301163928438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301163941855.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301163955425.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301164730729.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301164807359.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301164906571.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301164938975.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165028390.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165039793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165114978.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165129555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165233624.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165522195.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165621531.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165647497.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165651302.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210301165803871.png">
+<meta property="og:updated_time" content="2021-06-12T03:16:39.013Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Redis学习笔记（一）》">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210301162709871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/02/21/《Redis学习笔记（一）》/">
+
+
+
+
+
+  <title>《Redis学习笔记（一）》 | MTHGH</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MTHGH</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/21/《Redis学习笔记（一）》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Yu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/head-picture.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MTHGH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Redis学习笔记（一）》</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-21T18:12:01+08:00">
+                2021-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="Redis基础知识"><a href="#Redis基础知识" class="headerlink" title="Redis基础知识"></a>Redis基础知识</h2><h3 id="启动Redis服务："><a href="#启动Redis服务：" class="headerlink" title="启动Redis服务："></a>启动Redis服务：</h3><p>双击：<br><img src="https://img-blog.csdnimg.cn/20210301162709871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>即可启动：</p>
+<p> <img src="https://img-blog.csdnimg.cn/20210301162732317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>PID为进程号、Port为端口号。</p>
+<h3 id="使用Redis刻客户端连接Redis"><a href="#使用Redis刻客户端连接Redis" class="headerlink" title="使用Redis刻客户端连接Redis"></a>使用Redis刻客户端连接Redis</h3><p>打开Redis客服端（<font color="red">Redis服务窗口始终处于打开状态</font>）：<br> <img src="https://img-blog.csdnimg.cn/2021030116285011.png" alt="在这里插入图片描述"></p>
+<p>弹出界面：<br> <img src="https://img-blog.csdnimg.cn/20210301162855500.png" alt="在这里插入图片描述"></p>
+<p>测试Redis客户端连接Redis成功与否？<br>输入：ping<br>返回：pong 则表明连接成功。<br> <img src="https://img-blog.csdnimg.cn/20210301162904183.png" alt="在这里插入图片描述"></p>
+<h3 id="查看Redis中所有已存在的键（Key）"><a href="#查看Redis中所有已存在的键（Key）" class="headerlink" title="查看Redis中所有已存在的键（Key）"></a>查看Redis中所有已存在的键（Key）</h3><p>命令：keys *<br> <img src="https://img-blog.csdnimg.cn/20210301162944356.png" alt="在这里插入图片描述"></p>
+<h3 id="选择不同的数据库"><a href="#选择不同的数据库" class="headerlink" title="选择不同的数据库"></a>选择不同的数据库</h3><p>因为Redis有16个数据库，默认使用的是0号数据库，通过命令：<br>Select (序号0~15)<br>如：select 7<br>即可选择不同的数据库了。</p>
+<h3 id="查看某一个数据库中存储的数据的条数"><a href="#查看某一个数据库中存储的数据的条数" class="headerlink" title="查看某一个数据库中存储的数据的条数"></a>查看某一个数据库中存储的数据的条数</h3><p>命令：DBSIZE<br> <img src="https://img-blog.csdnimg.cn/20210301163008587.png" alt="在这里插入图片描述"></p>
+<h3 id="清空某一个数据库中的所有数据"><a href="#清空某一个数据库中的所有数据" class="headerlink" title="清空某一个数据库中的所有数据"></a>清空某一个数据库中的所有数据</h3><p>命令：flushdb</p>
+<h3 id="清空所有数据库中的所有数据"><a href="#清空所有数据库中的所有数据" class="headerlink" title="清空所有数据库中的所有数据"></a>清空所有数据库中的所有数据</h3><p>命令：FLUSHALL</p>
+<h3 id="为什么Redis的端口是6379？"><a href="#为什么Redis的端口是6379？" class="headerlink" title="为什么Redis的端口是6379？"></a>为什么Redis的端口是6379？</h3><p>来历：<br>MERZ在九宫格输入法上对应6379</p>
+<h3 id="Redis是单线程的！"><a href="#Redis是单线程的！" class="headerlink" title="Redis是单线程的！"></a>Redis是单线程的！</h3><p>Redis特别块！官方表示：Redis基于内存操作，<font color="red">CPU不是Redis性能瓶颈，Redis性能瓶颈是根据机器的内存和网络带宽，既然可以使用单线程来实现，就使用单线程了</font>。所以就使用了单线程。</p>
+<h3 id="那Redis为什么单线程还这么快？"><a href="#那Redis为什么单线程还这么快？" class="headerlink" title="那Redis为什么单线程还这么快？"></a>那Redis为什么单线程还这么快？</h3><p>Redis是C语言写的</p>
+<p>1.误区1：高性能服务器一定是多线程的！<br>2.误区2：多线程（CPU上下文会切换！）一定比单线程效率高！<br>速度：CPU&gt;内存&gt;硬盘<br><font color="red">核心：</font>Redis是将所有的数据全部放在内存中，所以说使用单线程去操作效率就是最高的。因为多线程（CPU上下文切换是耗时的操作！），而对内存系统来说，如果没有上下文切换效率就是最高的！多次读写都是在一个CPU上的，在内存情况下，这个就是最佳答案！<font color="red">即在内存模型情况下，使用单线程！</font></p>
+<h3 id="判断某一个键是否存在"><a href="#判断某一个键是否存在" class="headerlink" title="判断某一个键是否存在"></a>判断某一个键是否存在</h3><p>命令：EXISTS (键)</p>
+<h3 id="移除数据库中的某一个键"><a href="#移除数据库中的某一个键" class="headerlink" title="移除数据库中的某一个键"></a>移除数据库中的某一个键</h3><p>命令：move (键)</p>
+<h3 id="设置键的过期时间"><a href="#设置键的过期时间" class="headerlink" title="设置键的过期时间"></a>设置键的过期时间</h3><p>命令：EXPIRE (键) (数值，单位为s)</p>
+<h3 id="查看键还有多少时间后会过期"><a href="#查看键还有多少时间后会过期" class="headerlink" title="查看键还有多少时间后会过期"></a>查看键还有多少时间后会过期</h3><p>命令：ttl (键)<br> <img src="https://img-blog.csdnimg.cn/20210301163720179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="查看数据类型"><a href="#查看数据类型" class="headerlink" title="查看数据类型"></a>查看数据类型</h3><p>命令：type (键)</p>
+<h3 id="往String类型的数据后追加数据"><a href="#往String类型的数据后追加数据" class="headerlink" title="往String类型的数据后追加数据"></a>往String类型的数据后追加数据</h3><p>命令：APPEND (键) (字符串)</p>
+<h3 id="遇到不会的命令可在官网查看"><a href="#遇到不会的命令可在官网查看" class="headerlink" title="遇到不会的命令可在官网查看"></a>遇到不会的命令可在官网查看</h3><p><a href="http://www.redis.cn/commands.html" target="_blank" rel="noopener">参考文档</a></p>
+<h2 id="Redis中五种基本数据类型"><a href="#Redis中五种基本数据类型" class="headerlink" title="Redis中五种基本数据类型"></a>Redis中五种基本数据类型</h2><h2 id="String类型的学习："><a href="#String类型的学习：" class="headerlink" title="String类型的学习："></a>String类型的学习：</h2><p>90%的Java程序员只会使用redis的String类型，但是其还有很多类型，我们应该根据不同的场景而选用不同的类型进行使用。</p>
+<h3 id="APPEND往String类型的数据后追加数据"><a href="#APPEND往String类型的数据后追加数据" class="headerlink" title="APPEND往String类型的数据后追加数据"></a>APPEND往String类型的数据后追加数据</h3><p>命令：APPEND (键) (字符串)</p>
+<h3 id="STRLEN查看String类型数据的长度"><a href="#STRLEN查看String类型数据的长度" class="headerlink" title="STRLEN查看String类型数据的长度"></a>STRLEN查看String类型数据的长度</h3><p>命令：STRLEN<br><img src="https://img-blog.csdnimg.cn/20210301163928438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="incr实现i-i–功能的命令"><a href="#incr实现i-i–功能的命令" class="headerlink" title="incr实现i++/i–功能的命令"></a>incr实现i++/i–功能的命令</h3><p>命令：incr (键)<br>命令：decr (键)<br> <img src="https://img-blog.csdnimg.cn/20210301163941855.png" alt="在这里插入图片描述"></p>
+<h3 id="INCRBY实现加一个给定值的功能的命令"><a href="#INCRBY实现加一个给定值的功能的命令" class="headerlink" title="INCRBY实现加一个给定值的功能的命令"></a>INCRBY实现加一个给定值的功能的命令</h3><p>命令：INCRBY (键) (给定值)<br> <img src="https://img-blog.csdnimg.cn/20210301163955425.png" alt="在这里插入图片描述"></p>
+<h3 id="GETRANGE获取一个范围内的字符串"><a href="#GETRANGE获取一个范围内的字符串" class="headerlink" title="GETRANGE获取一个范围内的字符串"></a>GETRANGE获取一个范围内的字符串</h3><p>命令：GETRANGE (键) (起始索引) (结束索引)<br>相当于Java中的subString()方法</p>
+<p>GETRANGE (键) 0 3   相当于获取[0,3]闭区间内的<br>GETRANGE (键) (起始索引) -1    此命令为获取全部的字符串</p>
+<h3 id="SETRANGE进行范围替换"><a href="#SETRANGE进行范围替换" class="headerlink" title="SETRANGE进行范围替换"></a>SETRANGE进行范围替换</h3><p>命令：SETRANGE (键) offset value</p>
+<p>SETRANGE (键) 1 xx</p>
+<h3 id="setex-（set-with-expire）-设置过期时间"><a href="#setex-（set-with-expire）-设置过期时间" class="headerlink" title="setex （set with expire） #设置过期时间"></a>setex （set with expire） #设置过期时间</h3><p>命令：setex (键) second value<br>如：setex key1 30 “hello”   含义：设定键key1的值为字符串“hello”，并且该键值对的过期时间为30s</p>
+<h3 id="setnx（set-if-not-exist）-如果不存在则设置（在分布式锁中常使用）"><a href="#setnx（set-if-not-exist）-如果不存在则设置（在分布式锁中常使用）" class="headerlink" title="setnx（set if not exist） #如果不存在则设置（在分布式锁中常使用）"></a>setnx（set if not exist） #如果不存在则设置（<font color="red">在分布式锁中常使用</font>）</h3><p>命令：setnx key value<br>如下图：<br> <img src="https://img-blog.csdnimg.cn/20210301164730729.png" alt="在这里插入图片描述"></p>
+<p>就是如果一个键不存在，则可以成功设置以该键作为键的键值对，否则不能设置。</p>
+<h3 id="mset、mget--批量设置值和批量获取值"><a href="#mset、mget--批量设置值和批量获取值" class="headerlink" title="mset、mget  批量设置值和批量获取值"></a>mset、mget  批量设置值和批量获取值</h3><p>命令：mset k1 v1 k2 v2 […]</p>
+<h3 id="msetnx-批量进行“如果不存在则设置”"><a href="#msetnx-批量进行“如果不存在则设置”" class="headerlink" title="msetnx   #批量进行“如果不存在则设置”"></a>msetnx   #批量进行“如果不存在则设置”</h3><p>如何新建一个对象<br> <img src="https://img-blog.csdnimg.cn/20210301164807359.png" alt="在这里插入图片描述"></p>
+<p><font color="red">Redis中可以通过冒号来巧妙的实现各种key：如上：user:{id}:{field}</font><br>那么：<br>user:1:name、user:2:name、user:3:name都是键<br>article:10000:views  当前第10000篇文章的浏览量，<font color="red">所以通过改变{id}值就可以实现key的复用了。</font></p>
+<h3 id="getset命令：即先get再set"><a href="#getset命令：即先get再set" class="headerlink" title="getset命令：即先get再set"></a>getset命令：即先get再set</h3><p>如果不存在则设置，如果存在则设定新的值（可用于更新操作）<br> <img src="https://img-blog.csdnimg.cn/20210301164906571.png" alt="在这里插入图片描述"></p>
+<h3 id="String类型的使用场景"><a href="#String类型的使用场景" class="headerlink" title="String类型的使用场景"></a>String类型的使用场景</h3><p>String类型的使用场景:value除了是我们的字符串还可以是我们的数字！<br>    计数器<br>    统计多单位数量<br>    粉丝数<br>    对象缓存存储</p>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>在Redis里面，我们可以把list玩成：栈（单边进出）、队列（一边进一边出）、阻塞队列（双端进出）！</p>
+<h3 id="LPUSH-RPUSH-和-LRANGE-用于往列表中添加数据和获取列表某一个区间内的数据"><a href="#LPUSH-RPUSH-和-LRANGE-用于往列表中添加数据和获取列表某一个区间内的数据" class="headerlink" title="LPUSH/RPUSH 和 LRANGE 用于往列表中添加数据和获取列表某一个区间内的数据"></a>LPUSH/RPUSH 和 LRANGE 用于往列表中添加数据和获取列表某一个区间内的数据</h3><p>命令：LPUSH<br>作用：将一个值或者多个值插入列表的头部（左）。<br>命令：RPUSH<br>作用：将一个值或者多个值插入列表的尾部（右）。</p>
+<p>并且通过LRANGE取数据时，是倒着拿数据的，也就是最后放入list中的数据最先取出，如下方的three</p>
+<p>所以通过这些操作就可以实现栈、队列、阻塞队列等功能。<br> <img src="https://img-blog.csdnimg.cn/20210301164938975.png" alt="在这里插入图片描述"></p>
+<h3 id="LPOP和RPOP从左边-右边移除一个数据"><a href="#LPOP和RPOP从左边-右边移除一个数据" class="headerlink" title="LPOP和RPOP从左边/右边移除一个数据"></a>LPOP和RPOP从左边/右边移除一个数据</h3><p>命令：LPOP key</p>
+<h3 id="LINDEX-通过下标获取List中的某一个值"><a href="#LINDEX-通过下标获取List中的某一个值" class="headerlink" title="LINDEX 通过下标获取List中的某一个值"></a>LINDEX 通过下标获取List中的某一个值</h3><p>命令：lindex key value(下标value)</p>
+<h3 id="Llen-返回List的长度"><a href="#Llen-返回List的长度" class="headerlink" title="Llen 返回List的长度"></a>Llen 返回List的长度</h3><p>命令：Llen key</p>
+<h3 id="Lrem-移除指定的值"><a href="#Lrem-移除指定的值" class="headerlink" title="Lrem 移除指定的值"></a>Lrem 移除指定的值</h3><p>命令：Lrem key value(移除个数) value<br>Lrem list 1 one   ：移除list列表中的1个one值</p>
+<h3 id="trim-修剪操作，在List中则是Ltrim：用于截断操作"><a href="#trim-修剪操作，在List中则是Ltrim：用于截断操作" class="headerlink" title="trim 修剪操作，在List中则是Ltrim：用于截断操作"></a>trim 修剪操作，在List中则是Ltrim：用于截断操作</h3><p>命令：Ltrim key 【范围】(指保留下的元素范围)</p>
+<p><img src="https://img-blog.csdnimg.cn/20210301165028390.png" alt="在这里插入图片描述"></p>
+<h3 id="rpoplpush-移除列表的最后一个元素，并将它添加到另一个列表的头部"><a href="#rpoplpush-移除列表的最后一个元素，并将它添加到另一个列表的头部" class="headerlink" title="rpoplpush 移除列表的最后一个元素，并将它添加到另一个列表的头部"></a>rpoplpush 移除列表的最后一个元素，并将它添加到另一个列表的头部</h3><p>命令：rpoplpush source destination<br> <img src="https://img-blog.csdnimg.cn/20210301165039793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="Lset-和String类型中的set命令不同，在List中使用lset命令并不能创建一个key，List中只有lpush-rpush能够创建key，所以在使用Lset命令之前先得使用lpush-rpush创建出key才行"><a href="#Lset-和String类型中的set命令不同，在List中使用lset命令并不能创建一个key，List中只有lpush-rpush能够创建key，所以在使用Lset命令之前先得使用lpush-rpush创建出key才行" class="headerlink" title="Lset 和String类型中的set命令不同，在List中使用lset命令并不能创建一个key，List中只有lpush/rpush能够创建key，所以在使用Lset命令之前先得使用lpush/rpush创建出key才行"></a>Lset 和String类型中的set命令不同，在List中使用lset命令并不能创建一个key，List中只有lpush/rpush能够创建key，所以在使用Lset命令之前先得使用lpush/rpush创建出key才行</h3><p>命令：lset key(必须已存在) index value<br>作用：将指定下标处的值设为所提供的值（相当于update操作）</p>
+<h3 id="Linsert-Rinsert-往List中插入值"><a href="#Linsert-Rinsert-往List中插入值" class="headerlink" title="Linsert/Rinsert 往List中插入值"></a>Linsert/Rinsert 往List中插入值</h3><p>命令：Linsert key before|after(往前插入还是往后插入) pivot(基准点) value<br> <img src="https://img-blog.csdnimg.cn/20210301165114978.png" alt="在这里插入图片描述"></p>
+<h3 id="exists-判断键是否存在"><a href="#exists-判断键是否存在" class="headerlink" title="exists 判断键是否存在"></a>exists 判断键是否存在</h3><p>命令：exists key</p>
+<h3 id="List总结："><a href="#List总结：" class="headerlink" title="List总结："></a>List总结：</h3><p> <img src="https://img-blog.csdnimg.cn/20210301165129555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h2><p>Set中的值不能重复！</p>
+<h3 id="sadd-往Set中添加元素"><a href="#sadd-往Set中添加元素" class="headerlink" title="sadd 往Set中添加元素"></a>sadd 往Set中添加元素</h3><p>命令：sadd key value</p>
+<h3 id="smembers-打印出一个Set中的所有元素"><a href="#smembers-打印出一个Set中的所有元素" class="headerlink" title="smembers 打印出一个Set中的所有元素"></a>smembers 打印出一个Set中的所有元素</h3><p>命令：smembers key</p>
+<h3 id="sismember-is-member-判定-即判断某个元素是否属于某个Set"><a href="#sismember-is-member-判定-即判断某个元素是否属于某个Set" class="headerlink" title="sismember (is member 判定)即判断某个元素是否属于某个Set"></a>sismember (is member 判定)即判断某个元素是否属于某个Set</h3><p>命令：sismember key value</p>
+<h3 id="scard-获取Set集合中的元素的个数"><a href="#scard-获取Set集合中的元素的个数" class="headerlink" title="scard 获取Set集合中的元素的个数"></a>scard 获取Set集合中的元素的个数</h3><p>命令：scard key</p>
+<h3 id="srem-移除Set中的某一个元素"><a href="#srem-移除Set中的某一个元素" class="headerlink" title="srem 移除Set中的某一个元素"></a>srem 移除Set中的某一个元素</h3><p>命令：srem key value</p>
+<h3 id="srandmember-随机返回Set集合中的一个元素"><a href="#srandmember-随机返回Set集合中的一个元素" class="headerlink" title="srandmember 随机返回Set集合中的一个元素"></a>srandmember 随机返回Set集合中的一个元素</h3><p>命令：srandmember key 随口抽取出一个元素<br>命令：srandmember key value 随口抽取出指定个数的元素</p>
+<h3 id="spop-随机移除元素"><a href="#spop-随机移除元素" class="headerlink" title="spop 随机移除元素"></a>spop 随机移除元素</h3><p>命令：spop key</p>
+<h3 id="smove-将一个集合中的某些元素移动到另外一个集合中去"><a href="#smove-将一个集合中的某些元素移动到另外一个集合中去" class="headerlink" title="smove 将一个集合中的某些元素移动到另外一个集合中去"></a>smove 将一个集合中的某些元素移动到另外一个集合中去</h3><p>命令：smove source destination member<br>smove key1 key2 value</p>
+<h3 id="sdiff-返回差集"><a href="#sdiff-返回差集" class="headerlink" title="sdiff 返回差集"></a>sdiff 返回差集</h3><p>命令：sdiff key1 key2<br> <img src="https://img-blog.csdnimg.cn/20210301165233624.png" alt="在这里插入图片描述"></p>
+<p>sdiff命令会以第一个key为基准，返回<font color="red">在第一个集合中的且不属于第二个集合的元素</font></p>
+<h3 id="sinter-求交集（共同关注-好友）"><a href="#sinter-求交集（共同关注-好友）" class="headerlink" title="sinter 求交集（共同关注/好友）"></a>sinter 求交集（共同关注/好友）</h3><p>命令：sinter key1 key2</p>
+<h2 id="Hash（哈希）"><a href="#Hash（哈希）" class="headerlink" title="Hash（哈希）"></a>Hash（哈希）</h2><p>Map集合，key-map:也就是key-&lt;field,value&gt;:此时的值是一个map集合！此处的field实际上也就是value的key罢了<br>本质上和String类型没有太大区别，还是一个简单的key-value!</p>
+<h3 id="hset-新建一个哈希"><a href="#hset-新建一个哈希" class="headerlink" title="hset 新建一个哈希"></a>hset 新建一个哈希</h3><p>命令：hset key field value</p>
+<h3 id="hget-获取hash中filed字段对应的值"><a href="#hget-获取hash中filed字段对应的值" class="headerlink" title="hget 获取hash中filed字段对应的值"></a>hget 获取hash中filed字段对应的值</h3><p>命令：hget key field</p>
+<h3 id="hmset-设置多个hash的field和value值对"><a href="#hmset-设置多个hash的field和value值对" class="headerlink" title="hmset 设置多个hash的field和value值对"></a>hmset 设置多个hash的field和value值对</h3><p>命令：hmset key field1 value [field value …]</p>
+<h3 id="hmget-获取hash中多个field的值"><a href="#hmget-获取hash中多个field的值" class="headerlink" title="hmget 获取hash中多个field的值"></a>hmget 获取hash中多个field的值</h3><p>命令：hmget key field1 [field…]</p>
+<h3 id="hgetall-获取哈希中所有的-lt-field-value-gt-键值对"><a href="#hgetall-获取哈希中所有的-lt-field-value-gt-键值对" class="headerlink" title="hgetall 获取哈希中所有的&lt;field,value&gt;键值对"></a>hgetall 获取哈希中所有的&lt;field,value&gt;键值对</h3><p>命令：hgetall key</p>
+<h3 id="hdel-删除哈希指定的key字段，field删除了，对应的value也就没了"><a href="#hdel-删除哈希指定的key字段，field删除了，对应的value也就没了" class="headerlink" title="hdel 删除哈希指定的key字段，field删除了，对应的value也就没了"></a>hdel 删除哈希指定的key字段，field删除了，对应的value也就没了</h3><p>命令：hdel key filed1 [field …]</p>
+<h3 id="hlen-获取哈希表的字段数量，也就是-lt-field-value-gt-键值对的个数"><a href="#hlen-获取哈希表的字段数量，也就是-lt-field-value-gt-键值对的个数" class="headerlink" title="hlen 获取哈希表的字段数量，也就是&lt;field,value&gt;键值对的个数"></a>hlen 获取哈希表的字段数量，也就是&lt;field,value&gt;键值对的个数</h3><p>命令：hlen key</p>
+<h3 id="HEXISTS-判断哈希的某个key对应的某个field是否存在"><a href="#HEXISTS-判断哈希的某个key对应的某个field是否存在" class="headerlink" title="HEXISTS 判断哈希的某个key对应的某个field是否存在"></a>HEXISTS 判断哈希的某个key对应的某个field是否存在</h3><p>命令：HEXISTS key field</p>
+<h3 id="hkeys-只获得哈希的所有的field"><a href="#hkeys-只获得哈希的所有的field" class="headerlink" title="hkeys 只获得哈希的所有的field"></a>hkeys 只获得哈希的所有的field</h3><p>命令：hkeys key</p>
+<h3 id="hvals-只获得哈希所有的值"><a href="#hvals-只获得哈希所有的值" class="headerlink" title="hvals 只获得哈希所有的值"></a>hvals 只获得哈希所有的值</h3><p>命令：hvals key</p>
+<h3 id="hincrby-hdecrby-给哈希中的field对应的value加上-减去一个固定值"><a href="#hincrby-hdecrby-给哈希中的field对应的value加上-减去一个固定值" class="headerlink" title="hincrby/hdecrby 给哈希中的field对应的value加上/减去一个固定值"></a>hincrby/hdecrby 给哈希中的field对应的value加上/减去一个固定值</h3><p>命令：hincrby key field value</p>
+<h3 id="hsetnx-hset-if-not-exist-如果不存在则会成功执行hset命令，如果存在，则不会执行hset"><a href="#hsetnx-hset-if-not-exist-如果不存在则会成功执行hset命令，如果存在，则不会执行hset" class="headerlink" title="hsetnx (hset if not exist) 如果不存在则会成功执行hset命令，如果存在，则不会执行hset"></a>hsetnx (hset if not exist) 如果不存在则会成功执行hset命令，如果存在，则不会执行hset</h3><p>命令：hsetnx key field value</p>
+<h3 id="哈希应用场景总结："><a href="#哈希应用场景总结：" class="headerlink" title="哈希应用场景总结："></a>哈希应用场景总结：</h3><p>Hash用于存储变更的数据，如将一个user作为一个hash的key，然后这个user里可以存name,age等字段，也就是将name和age作为field。<br>比如：hset user:1 name “junjun”   hset user:1 age 24<br><font color="red">此处是将user:1作为hash的key的。</font><br>Hash用于存储变更的数据，尤其是用户信息之类的，经常变动的信息！<font color="red">hash更适合于对象的存储，String更加适合字符串存储！</font></p>
+<h2 id="Zset（有序集合）"><a href="#Zset（有序集合）" class="headerlink" title="Zset（有序集合）"></a>Zset（有序集合）</h2><p>Zset在插入值时，需要给定一个score用于Zset中元素的排序</p>
+<h3 id="zadd-往Zset中添加元素"><a href="#zadd-往Zset中添加元素" class="headerlink" title="zadd 往Zset中添加元素"></a>zadd 往Zset中添加元素</h3><p>命令：zadd key score value</p>
+<h3 id="zrange-获取一定范围内的元素"><a href="#zrange-获取一定范围内的元素" class="headerlink" title="zrange 获取一定范围内的元素"></a>zrange 获取一定范围内的元素</h3><p>命令：zrange key start end<br>比如：zrange key 0 1  / zrange key 0 -1</p>
+<h3 id="zrangebyscore-通过score排序返回排序后的数据"><a href="#zrangebyscore-通过score排序返回排序后的数据" class="headerlink" title="zrangebyscore 通过score排序返回排序后的数据"></a>zrangebyscore 通过score排序返回排序后的数据</h3><p>命令：zrangebyscore key min max<br>这样写可以返回所有的数据：zrangebyscore key -inf +inf<br>这样写会一并返回对应的scores：<br>zrangebyscore key -inf +inf withsocres</p>
+<h3 id="zrem-移除元素"><a href="#zrem-移除元素" class="headerlink" title="zrem 移除元素"></a>zrem 移除元素</h3><p>命令：zrem key vlaue<br> <img src="https://img-blog.csdnimg.cn/20210301165522195.png" alt="在这里插入图片描述"></p>
+<h3 id="zcard-获得Zset中元素个数"><a href="#zcard-获得Zset中元素个数" class="headerlink" title="zcard 获得Zset中元素个数"></a>zcard 获得Zset中元素个数</h3><p>命令：zcard key</p>
+<h3 id="zcount-获取指定区间的成员数量"><a href="#zcount-获取指定区间的成员数量" class="headerlink" title="zcount 获取指定区间的成员数量"></a>zcount 获取指定区间的成员数量</h3><p>命令：zcount key min max</p>
+<h3 id="Zset应用场景总结："><a href="#Zset应用场景总结：" class="headerlink" title="Zset应用场景总结："></a>Zset应用场景总结：</h3><p>1.可用于存储班级成绩，工资表排序等。<br>2.又比如对消息进行加权，普通消息设置其权值为1，比较重要的消息设置其权值为2。<br>3.排行榜应用实现，比如B站实现的每日最热门。</p>
+<h2 id="Redis中三种特殊数据类型"><a href="#Redis中三种特殊数据类型" class="headerlink" title="Redis中三种特殊数据类型"></a>Redis中三种特殊数据类型</h2><h2 id="geospatial-地理位置"><a href="#geospatial-地理位置" class="headerlink" title="geospatial 地理位置"></a>geospatial 地理位置</h2><p>微信附近的人、打车距离计算？<br>Redis的Geo在Redis3.2版本就推出了！这个功能可以推算地理位置的信息，两地之间的距离，方圆几里的人！</p>
+<p>此数据类型只有六个命令：<br> <img src="https://img-blog.csdnimg.cn/20210301165621531.png" alt="在这里插入图片描述"></p>
+<h3 id="geoadd-将指定的地理空间位置（经度、纬度、名称）添加到指定的key中"><a href="#geoadd-将指定的地理空间位置（经度、纬度、名称）添加到指定的key中" class="headerlink" title="geoadd 将指定的地理空间位置（经度、纬度、名称）添加到指定的key中"></a>geoadd 将指定的地理空间位置（经度、纬度、名称）添加到指定的key中</h3><p>命令：geoadd key (经度) (纬度) value<br>比如：<br>geoadd china:city 116.40 39.90 beijing</p>
+<p>geoadd china:city 121.47 31.23 shanghai</p>
+<p>有效的经度从-180度到180度。<br>有效的纬度从-85.05112878度到85.05112878度。</p>
+<h3 id="geopos-从key里返回所有给定位置元素的位置（经度和纬度）"><a href="#geopos-从key里返回所有给定位置元素的位置（经度和纬度）" class="headerlink" title="geopos 从key里返回所有给定位置元素的位置（经度和纬度）"></a>geopos 从key里返回所有给定位置元素的位置（经度和纬度）</h3><p>命令：geopos key value</p>
+<p>比如：geopos china:city beijing</p>
+<h3 id="geodist-两个城市之间的距离"><a href="#geodist-两个城市之间的距离" class="headerlink" title="geodist 两个城市之间的距离"></a>geodist 两个城市之间的距离</h3><p>命令：geodist key city1 city2<br> <img src="https://img-blog.csdnimg.cn/20210301165647497.png" alt="在这里插入图片描述"></p>
+<p>将单位变成千米：<br> <img src="https://img-blog.csdnimg.cn/20210301165651302.png" alt="在这里插入图片描述"></p>
+<h3 id="georadius-以给定的经度纬度为中心，找出某一半径内的元素"><a href="#georadius-以给定的经度纬度为中心，找出某一半径内的元素" class="headerlink" title="georadius 以给定的经度纬度为中心，找出某一半径内的元素"></a>georadius 以给定的经度纬度为中心，找出某一半径内的元素</h3><h2 id="Hyperloglog"><a href="#Hyperloglog" class="headerlink" title="Hyperloglog"></a>Hyperloglog</h2><p>什么是基数？<br>A{1,3,5,7,8,7}<br>B{1,3,5,7,8}<br>基数（不重复的元素个数）=5，可以接受误差！</p>
+<p>Redis2.8.9版本更新了Hyperloglog数据结构！</p>
+<p>Redis Hyperloglog 基数统计的算法</p>
+<p><font color="red">Redis Hyperloglog优点：扎用的内存是固定的，2^64不同元素的基数，只需要花费12KB内存！从内存角度来比较的话Hyperloglog首选项！</font></p>
+<p>网站的UV（一个人访问一个网站多次，但是还是算作一个人！） 传统的实现方式：set保存用户id，然后通过统计set中的元素数量来得到网站的访问人数。这个方式如果保存大量的用户id，会特别的占用内存！我们的目的是计数，而不是保存用户id。</p>
+<p>Hyperloglog总共三个命令：</p>
+<h3 id="pfadd-添加元素"><a href="#pfadd-添加元素" class="headerlink" title="pfadd 添加元素"></a>pfadd 添加元素</h3><p>命令：pfadd key element [element …]</p>
+<h3 id="pfcount-统计Hyperloglog中存储的不重复元素的个数"><a href="#pfcount-统计Hyperloglog中存储的不重复元素的个数" class="headerlink" title="pfcount 统计Hyperloglog中存储的不重复元素的个数"></a>pfcount 统计Hyperloglog中存储的不重复元素的个数</h3><p>命令：pfcount key</p>
+<h3 id="pfmerge-将两个集合合并为一个新的集合"><a href="#pfmerge-将两个集合合并为一个新的集合" class="headerlink" title="pfmerge 将两个集合合并为一个新的集合"></a>pfmerge 将两个集合合并为一个新的集合</h3><p>命令：pfmerge key(新的集合的键名) key1(已存在的集合的键名) key2(已存在的集合的键名)<br>并且合并过程中会剔除两个集合的重复元素！</p>
+<p>Hyperloglog的错误率为0.81%，所以如果允许错误的话，一定就可以使用Hyperloglog了！不过不允许容错，则使用set或者自己的数据类型</p>
+<h2 id="Bitmaps-位图"><a href="#Bitmaps-位图" class="headerlink" title="Bitmaps 位图"></a>Bitmaps 位图</h2><p><font color="red">位存储！</font><br>统计用户信息，活跃，不活跃！登录、未登录！打卡！<br>像上述的只有两种状态的，都可以使用Bitmaps！<br>Bitmaps位图，数据结构！都是操作二进制位来进行记录，就只有0和1两种状态！</p>
+<p>比如统计用户打卡情况：“已打卡”“未打卡”，统计365天的打卡情况，每天的数据只需要一个数据位即可存储！<br>365天=365bit=365bit/8byte=46个字节左右！（很节约内存）</p>
+<p>Bitmaps总共三个方法：</p>
+<h3 id="setbit"><a href="#setbit" class="headerlink" title="setbit"></a>setbit</h3><p>命令：setbit key offset(就是指哪一个位) 0/1<br> <img src="https://img-blog.csdnimg.cn/20210301165803871.png" alt="在这里插入图片描述"></p>
+<p>设定一个星期的7天的打卡情况，0代表未打卡，1代表打卡。</p>
+<h3 id="getbit-查看某一天是否打卡"><a href="#getbit-查看某一天是否打卡" class="headerlink" title="getbit 查看某一天是否打卡"></a>getbit 查看某一天是否打卡</h3><p>命令：getbit key offset(哪一个位)</p>
+<h3 id="bitcount-统计位图中位为1的个数"><a href="#bitcount-统计位图中位为1的个数" class="headerlink" title="bitcount 统计位图中位为1的个数"></a>bitcount 统计位图中位为1的个数</h3>
+      
+    </div>
+    
+    
+    
+
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  
+	</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/15/SpringBoot学习笔记（四）/" rel="next" title="SpringBoot学习笔记（四）">
+                <i class="fa fa-chevron-left"></i> SpringBoot学习笔记（四）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/24/《Redis学习笔记（二）》/" rel="prev" title="《Redis学习笔记（二）》">
+                《Redis学习笔记（二）》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head-picture.jpg" alt="Mr.Yu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis基础知识"><span class="nav-number">1.</span> <span class="nav-text">Redis基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动Redis服务："><span class="nav-number">1.1.</span> <span class="nav-text">启动Redis服务：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Redis刻客户端连接Redis"><span class="nav-number">1.2.</span> <span class="nav-text">使用Redis刻客户端连接Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看Redis中所有已存在的键（Key）"><span class="nav-number">1.3.</span> <span class="nav-text">查看Redis中所有已存在的键（Key）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择不同的数据库"><span class="nav-number">1.4.</span> <span class="nav-text">选择不同的数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看某一个数据库中存储的数据的条数"><span class="nav-number">1.5.</span> <span class="nav-text">查看某一个数据库中存储的数据的条数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清空某一个数据库中的所有数据"><span class="nav-number">1.6.</span> <span class="nav-text">清空某一个数据库中的所有数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清空所有数据库中的所有数据"><span class="nav-number">1.7.</span> <span class="nav-text">清空所有数据库中的所有数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么Redis的端口是6379？"><span class="nav-number">1.8.</span> <span class="nav-text">为什么Redis的端口是6379？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis是单线程的！"><span class="nav-number">1.9.</span> <span class="nav-text">Redis是单线程的！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那Redis为什么单线程还这么快？"><span class="nav-number">1.10.</span> <span class="nav-text">那Redis为什么单线程还这么快？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断某一个键是否存在"><span class="nav-number">1.11.</span> <span class="nav-text">判断某一个键是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除数据库中的某一个键"><span class="nav-number">1.12.</span> <span class="nav-text">移除数据库中的某一个键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置键的过期时间"><span class="nav-number">1.13.</span> <span class="nav-text">设置键的过期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看键还有多少时间后会过期"><span class="nav-number">1.14.</span> <span class="nav-text">查看键还有多少时间后会过期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看数据类型"><span class="nav-number">1.15.</span> <span class="nav-text">查看数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#往String类型的数据后追加数据"><span class="nav-number">1.16.</span> <span class="nav-text">往String类型的数据后追加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到不会的命令可在官网查看"><span class="nav-number">1.17.</span> <span class="nav-text">遇到不会的命令可在官网查看</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis中五种基本数据类型"><span class="nav-number">2.</span> <span class="nav-text">Redis中五种基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String类型的学习："><span class="nav-number">3.</span> <span class="nav-text">String类型的学习：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#APPEND往String类型的数据后追加数据"><span class="nav-number">3.1.</span> <span class="nav-text">APPEND往String类型的数据后追加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STRLEN查看String类型数据的长度"><span class="nav-number">3.2.</span> <span class="nav-text">STRLEN查看String类型数据的长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#incr实现i-i–功能的命令"><span class="nav-number">3.3.</span> <span class="nav-text">incr实现i++/i–功能的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INCRBY实现加一个给定值的功能的命令"><span class="nav-number">3.4.</span> <span class="nav-text">INCRBY实现加一个给定值的功能的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GETRANGE获取一个范围内的字符串"><span class="nav-number">3.5.</span> <span class="nav-text">GETRANGE获取一个范围内的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SETRANGE进行范围替换"><span class="nav-number">3.6.</span> <span class="nav-text">SETRANGE进行范围替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setex-（set-with-expire）-设置过期时间"><span class="nav-number">3.7.</span> <span class="nav-text">setex （set with expire） #设置过期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setnx（set-if-not-exist）-如果不存在则设置（在分布式锁中常使用）"><span class="nav-number">3.8.</span> <span class="nav-text">setnx（set if not exist） #如果不存在则设置（在分布式锁中常使用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mset、mget--批量设置值和批量获取值"><span class="nav-number">3.9.</span> <span class="nav-text">mset、mget  批量设置值和批量获取值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#msetnx-批量进行“如果不存在则设置”"><span class="nav-number">3.10.</span> <span class="nav-text">msetnx   #批量进行“如果不存在则设置”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getset命令：即先get再set"><span class="nav-number">3.11.</span> <span class="nav-text">getset命令：即先get再set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String类型的使用场景"><span class="nav-number">3.12.</span> <span class="nav-text">String类型的使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-number">4.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LPUSH-RPUSH-和-LRANGE-用于往列表中添加数据和获取列表某一个区间内的数据"><span class="nav-number">4.1.</span> <span class="nav-text">LPUSH/RPUSH 和 LRANGE 用于往列表中添加数据和获取列表某一个区间内的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LPOP和RPOP从左边-右边移除一个数据"><span class="nav-number">4.2.</span> <span class="nav-text">LPOP和RPOP从左边/右边移除一个数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LINDEX-通过下标获取List中的某一个值"><span class="nav-number">4.3.</span> <span class="nav-text">LINDEX 通过下标获取List中的某一个值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Llen-返回List的长度"><span class="nav-number">4.4.</span> <span class="nav-text">Llen 返回List的长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lrem-移除指定的值"><span class="nav-number">4.5.</span> <span class="nav-text">Lrem 移除指定的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trim-修剪操作，在List中则是Ltrim：用于截断操作"><span class="nav-number">4.6.</span> <span class="nav-text">trim 修剪操作，在List中则是Ltrim：用于截断操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rpoplpush-移除列表的最后一个元素，并将它添加到另一个列表的头部"><span class="nav-number">4.7.</span> <span class="nav-text">rpoplpush 移除列表的最后一个元素，并将它添加到另一个列表的头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lset-和String类型中的set命令不同，在List中使用lset命令并不能创建一个key，List中只有lpush-rpush能够创建key，所以在使用Lset命令之前先得使用lpush-rpush创建出key才行"><span class="nav-number">4.8.</span> <span class="nav-text">Lset 和String类型中的set命令不同，在List中使用lset命令并不能创建一个key，List中只有lpush/rpush能够创建key，所以在使用Lset命令之前先得使用lpush/rpush创建出key才行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linsert-Rinsert-往List中插入值"><span class="nav-number">4.9.</span> <span class="nav-text">Linsert/Rinsert 往List中插入值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exists-判断键是否存在"><span class="nav-number">4.10.</span> <span class="nav-text">exists 判断键是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List总结："><span class="nav-number">4.11.</span> <span class="nav-text">List总结：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set（集合）"><span class="nav-number">5.</span> <span class="nav-text">Set（集合）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sadd-往Set中添加元素"><span class="nav-number">5.1.</span> <span class="nav-text">sadd 往Set中添加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#smembers-打印出一个Set中的所有元素"><span class="nav-number">5.2.</span> <span class="nav-text">smembers 打印出一个Set中的所有元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sismember-is-member-判定-即判断某个元素是否属于某个Set"><span class="nav-number">5.3.</span> <span class="nav-text">sismember (is member 判定)即判断某个元素是否属于某个Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scard-获取Set集合中的元素的个数"><span class="nav-number">5.4.</span> <span class="nav-text">scard 获取Set集合中的元素的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#srem-移除Set中的某一个元素"><span class="nav-number">5.5.</span> <span class="nav-text">srem 移除Set中的某一个元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#srandmember-随机返回Set集合中的一个元素"><span class="nav-number">5.6.</span> <span class="nav-text">srandmember 随机返回Set集合中的一个元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spop-随机移除元素"><span class="nav-number">5.7.</span> <span class="nav-text">spop 随机移除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#smove-将一个集合中的某些元素移动到另外一个集合中去"><span class="nav-number">5.8.</span> <span class="nav-text">smove 将一个集合中的某些元素移动到另外一个集合中去</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sdiff-返回差集"><span class="nav-number">5.9.</span> <span class="nav-text">sdiff 返回差集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sinter-求交集（共同关注-好友）"><span class="nav-number">5.10.</span> <span class="nav-text">sinter 求交集（共同关注/好友）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash（哈希）"><span class="nav-number">6.</span> <span class="nav-text">Hash（哈希）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hset-新建一个哈希"><span class="nav-number">6.1.</span> <span class="nav-text">hset 新建一个哈希</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hget-获取hash中filed字段对应的值"><span class="nav-number">6.2.</span> <span class="nav-text">hget 获取hash中filed字段对应的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hmset-设置多个hash的field和value值对"><span class="nav-number">6.3.</span> <span class="nav-text">hmset 设置多个hash的field和value值对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hmget-获取hash中多个field的值"><span class="nav-number">6.4.</span> <span class="nav-text">hmget 获取hash中多个field的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hgetall-获取哈希中所有的-lt-field-value-gt-键值对"><span class="nav-number">6.5.</span> <span class="nav-text">hgetall 获取哈希中所有的&lt;field,value&gt;键值对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hdel-删除哈希指定的key字段，field删除了，对应的value也就没了"><span class="nav-number">6.6.</span> <span class="nav-text">hdel 删除哈希指定的key字段，field删除了，对应的value也就没了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hlen-获取哈希表的字段数量，也就是-lt-field-value-gt-键值对的个数"><span class="nav-number">6.7.</span> <span class="nav-text">hlen 获取哈希表的字段数量，也就是&lt;field,value&gt;键值对的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HEXISTS-判断哈希的某个key对应的某个field是否存在"><span class="nav-number">6.8.</span> <span class="nav-text">HEXISTS 判断哈希的某个key对应的某个field是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hkeys-只获得哈希的所有的field"><span class="nav-number">6.9.</span> <span class="nav-text">hkeys 只获得哈希的所有的field</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hvals-只获得哈希所有的值"><span class="nav-number">6.10.</span> <span class="nav-text">hvals 只获得哈希所有的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hincrby-hdecrby-给哈希中的field对应的value加上-减去一个固定值"><span class="nav-number">6.11.</span> <span class="nav-text">hincrby/hdecrby 给哈希中的field对应的value加上/减去一个固定值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hsetnx-hset-if-not-exist-如果不存在则会成功执行hset命令，如果存在，则不会执行hset"><span class="nav-number">6.12.</span> <span class="nav-text">hsetnx (hset if not exist) 如果不存在则会成功执行hset命令，如果存在，则不会执行hset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希应用场景总结："><span class="nav-number">6.13.</span> <span class="nav-text">哈希应用场景总结：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zset（有序集合）"><span class="nav-number">7.</span> <span class="nav-text">Zset（有序集合）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zadd-往Zset中添加元素"><span class="nav-number">7.1.</span> <span class="nav-text">zadd 往Zset中添加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zrange-获取一定范围内的元素"><span class="nav-number">7.2.</span> <span class="nav-text">zrange 获取一定范围内的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zrangebyscore-通过score排序返回排序后的数据"><span class="nav-number">7.3.</span> <span class="nav-text">zrangebyscore 通过score排序返回排序后的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zrem-移除元素"><span class="nav-number">7.4.</span> <span class="nav-text">zrem 移除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zcard-获得Zset中元素个数"><span class="nav-number">7.5.</span> <span class="nav-text">zcard 获得Zset中元素个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zcount-获取指定区间的成员数量"><span class="nav-number">7.6.</span> <span class="nav-text">zcount 获取指定区间的成员数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zset应用场景总结："><span class="nav-number">7.7.</span> <span class="nav-text">Zset应用场景总结：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis中三种特殊数据类型"><span class="nav-number">8.</span> <span class="nav-text">Redis中三种特殊数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geospatial-地理位置"><span class="nav-number">9.</span> <span class="nav-text">geospatial 地理位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#geoadd-将指定的地理空间位置（经度、纬度、名称）添加到指定的key中"><span class="nav-number">9.1.</span> <span class="nav-text">geoadd 将指定的地理空间位置（经度、纬度、名称）添加到指定的key中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geopos-从key里返回所有给定位置元素的位置（经度和纬度）"><span class="nav-number">9.2.</span> <span class="nav-text">geopos 从key里返回所有给定位置元素的位置（经度和纬度）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geodist-两个城市之间的距离"><span class="nav-number">9.3.</span> <span class="nav-text">geodist 两个城市之间的距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#georadius-以给定的经度纬度为中心，找出某一半径内的元素"><span class="nav-number">9.4.</span> <span class="nav-text">georadius 以给定的经度纬度为中心，找出某一半径内的元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hyperloglog"><span class="nav-number">10.</span> <span class="nav-text">Hyperloglog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pfadd-添加元素"><span class="nav-number">10.1.</span> <span class="nav-text">pfadd 添加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pfcount-统计Hyperloglog中存储的不重复元素的个数"><span class="nav-number">10.2.</span> <span class="nav-text">pfcount 统计Hyperloglog中存储的不重复元素的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pfmerge-将两个集合合并为一个新的集合"><span class="nav-number">10.3.</span> <span class="nav-text">pfmerge 将两个集合合并为一个新的集合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitmaps-位图"><span class="nav-number">11.</span> <span class="nav-text">Bitmaps 位图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setbit"><span class="nav-number">11.1.</span> <span class="nav-text">setbit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getbit-查看某一天是否打卡"><span class="nav-number">11.2.</span> <span class="nav-text">getbit 查看某一天是否打卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitcount-统计位图中位为1的个数"><span class="nav-number">11.3.</span> <span class="nav-text">bitcount 统计位图中位为1的个数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Yu</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

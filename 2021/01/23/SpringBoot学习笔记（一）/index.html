@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SpringBoot,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot学习笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2021/01/23/SpringBoot学习笔记（一）/index.html">
+<meta property="og:site_name" content="MTHGH">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150056593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150117902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150131739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150150123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150215847.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150226203.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150236468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150306348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150350218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150412956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150422994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150439633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150506409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021022215052448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150555305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150759300.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150911588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222150932310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222151001530.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222151020389.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222151041690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222151059520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021022215114764.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222151204795.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021022215122319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222151305713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222151334649.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021022215135077.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210222151409663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:updated_time" content="2021-06-12T03:05:49.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot学习笔记（一）">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210222150056593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/01/23/SpringBoot学习笔记（一）/">
+
+
+
+
+
+  <title>SpringBoot学习笔记（一） | MTHGH</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MTHGH</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/SpringBoot学习笔记（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Yu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/head-picture.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MTHGH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringBoot学习笔记（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-23T16:02:44+08:00">
+                2021-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot学习/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="微服务阶段"><a href="#微服务阶段" class="headerlink" title="微服务阶段"></a>微服务阶段</h2><p>javase：OOP</p>
+<p>mysql：持久化</p>
+<p>html+css+js+jquery+框架：视图、框架不熟练</p>
+<p>javaWeb：独立开发MVC三层架构的网站</p>
+<p>ssm：框架：简化了我们开发的流程，配置也开始比较复杂</p>
+<p>到此处为止：上方的这所有的都是打包成java中的war包</p>
+<p>Spring再简化：SpringBoot - jar ：内嵌tomcat；微服务架构！</p>
+<p>服务越来越多：SpringCloud</p>
+<hr>
+<p><img src="https://img-blog.csdnimg.cn/20210222150056593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="什么是微服务？"><a href="#什么是微服务？" class="headerlink" title="什么是微服务？"></a>什么是微服务？</h3><p>微服务是一种架构风格，它要求我们在开发一个应用时，这个应用必须构建一系列小服务的组合，也就是多模块组合（你在实习过程中遇到的项目都是这样的多模块组合）；可以通过http/rpc等的方式进行互通。要说微服务架构，要说一说过去的单体应用架构！</p>
+<p><font color="red">一个一个的模块都可以打包成jar包，这些jar包就是相应的接口！</font></p>
+<h3 id="单体应用架构？"><a href="#单体应用架构？" class="headerlink" title="单体应用架构？"></a>单体应用架构？</h3><p>所谓单体应用架构（all in one）是指，我们将一个应用中的所有应用服务都封装在一个应用中。</p>
+<p>无论是ERP、CRM或是其他什么系统，你都把数据库访问，web访问，等等各个功能放到<font color="red">一个war包内</font>。</p>
+<ul>
+<li><p>这样做的好处是，易于开发和测试；也十分方便部署；当需要扩展时，只需要将war复制多份，然后放到多个服务器上，再做个负载均衡就可以了。</p>
+</li>
+<li><p>单体应用架构的缺点是，<font color="blue">哪怕我要修改一个非常小的地方，我都需要停掉整个服务，重新打包、再部署这个应用war包</font>。特别是对于一个大型应用，我们不可能吧所有内容都放在一个应用里面，我们如何维护、如何分工合作都是问题。</p>
+</li>
+</ul>
+<h3 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h3><p>all in one的架构方式，我们把所有的功能单元放在一个应用里面。然后我们把整个应用部署到服务器上。如果负载能力不行，我们将整个应用进行水平复制，进行扩展，然后在负载均衡。</p>
+<p><font color="red">所谓微服务架构，就是打破之前all in one的架构方式，把每个功能元素独立出来（和你实习过程中看到项目的一样！）</font>。把独立出来的功能元素的动态组合，需要的功能元素才去拿来组合，需要多一些时可以整合多个功能元素。所以微服务架构是对功能元素进行复制，而没有对整个应用进行复制。</p>
+<p>这样做的好处是：</p>
+<ul>
+<li><font color="orange">1.节省了调用资源。</font></li>
+<li><font color="orange">2.每个功能元素的服务都是一个可替换的、可独立升级的软件代码。</font></li>
+</ul>
+<h3 id="如何构建微服务"><a href="#如何构建微服务" class="headerlink" title="如何构建微服务"></a>如何构建微服务</h3><p>一个大型系统的微服务架构，就像一个复杂交织的神经网络，每一个神经元就是一个功能元素，它们各自完成自己的功能，然后通过http相互请求调用。<font color="red">比如一个电商系统，查缓存、连数据库、浏览页面、结账、支付等服务都是一个个独立的功能服务，都被微化了，它们作为一个个微服务共同构建了一个庞大的系统。如果修改其中的一个功能，只需要更新升级其中一个功能服务单元即可。</font></p>
+<p>但是这种庞大的系统架构给部署和运维带来很大的难度。于是，spring为我们带来了构建大型分布式微服务的全套、全程产品：</p>
+<ul>
+<li><p>构建一个个功能独立的微服务应用单元，可以使用springboot，可以帮我们快速构建一个应用；</p>
+</li>
+<li><p>大型分布式网络服务的调用，这部分由spring cloud来完成，实现分布式；</p>
+</li>
+<li><p>在分布式中间，进行流式数据计算、批处理，我们有spring cloud data flow。</p>
+</li>
+<li><p>spring为我们想清楚了整个从开始构建应用到大型分布式应用全流程方案。</p>
+</li>
+</ul>
+<h2 id="第一个SpringBoot程序"><a href="#第一个SpringBoot程序" class="headerlink" title="第一个SpringBoot程序"></a>第一个SpringBoot程序</h2><p>第一个SpringBoot程序的创建并不困难，值得学习的是项目打包成jar包之后可以拿到任何地方去使用，如下所示！</p>
+<h3 id="1-通过mvn-package命令将SpringBoot项目打包成jar包"><a href="#1-通过mvn-package命令将SpringBoot项目打包成jar包" class="headerlink" title="1.通过mvn package命令将SpringBoot项目打包成jar包"></a>1.通过mvn package命令将SpringBoot项目打包成jar包</h3><p><img src="https://img-blog.csdnimg.cn/20210222150117902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="2-到该jar包的同级目录下通过运行命令行命令来运行该jar包"><a href="#2-到该jar包的同级目录下通过运行命令行命令来运行该jar包" class="headerlink" title="2.到该jar包的同级目录下通过运行命令行命令来运行该jar包"></a>2.到该jar包的同级目录下通过运行命令行命令来运行该jar包</h3><p><img src="https://img-blog.csdnimg.cn/20210222150131739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="3-之后通过浏览器访问对应URL网页，发现成功执行！"><a href="#3-之后通过浏览器访问对应URL网页，发现成功执行！" class="headerlink" title="3.之后通过浏览器访问对应URL网页，发现成功执行！"></a>3.之后通过浏览器访问对应URL网页，发现成功执行！</h3><h2 id="如何在applocation-properties文件中进行相关配置"><a href="#如何在applocation-properties文件中进行相关配置" class="headerlink" title="如何在applocation.properties文件中进行相关配置"></a>如何在applocation.properties文件中进行相关配置</h2><p>就拿redis的相关配置来讲解吧！</p>
+<h3 id="1-在库文件中找到spring-boot-autoconfigure文件"><a href="#1-在库文件中找到spring-boot-autoconfigure文件" class="headerlink" title="1.在库文件中找到spring-boot-autoconfigure文件"></a>1.在库文件中找到spring-boot-autoconfigure文件</h3><p><img src="https://img-blog.csdnimg.cn/20210222150150123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>然后打开它的spring.factores文件。</p>
+<h3 id="2-找到RedisAutoCinfiguration文件"><a href="#2-找到RedisAutoCinfiguration文件" class="headerlink" title="2.找到RedisAutoCinfiguration文件"></a>2.找到RedisAutoCinfiguration文件</h3><p><img src="https://img-blog.csdnimg.cn/20210222150215847.png#pic_center" alt="在这里插入图片描述"></p>
+<p>按ctrl+左键定位到该配置类。</p>
+<h3 id="3-找到标有-EnableConfigurationProperties注解"><a href="#3-找到标有-EnableConfigurationProperties注解" class="headerlink" title="3.找到标有@EnableConfigurationProperties注解"></a>3.找到标有@EnableConfigurationProperties注解</h3><p><img src="https://img-blog.csdnimg.cn/20210222150226203.png#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="4-以spring-redis为前缀，配置相应的属性即可"><a href="#4-以spring-redis为前缀，配置相应的属性即可" class="headerlink" title="4.以spring.redis为前缀，配置相应的属性即可"></a>4.以spring.redis为前缀，配置相应的属性即可</h3><p><img src="https://img-blog.csdnimg.cn/20210222150236468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="插件失败了，就再install一下"><a href="#插件失败了，就再install一下" class="headerlink" title="插件失败了，就再install一下"></a>插件失败了，就再install一下</h2><p>双击下图install即可：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222150306348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="原理初探"><a href="#原理初探" class="headerlink" title="原理初探"></a>原理初探</h2><p>配置原理：</p>
+<h3 id="pom-xml："><a href="#pom-xml：" class="headerlink" title="pom.xml："></a><strong>pom.xml：</strong></h3><ul>
+<li>spring-boot-dependencies.pom：核心依赖在父工程中！（版本管理就在该.pom文件中）</li>
+<li>我们在写或者引入一些springBoot依赖的时候，不需要指定版本，就是因为有这些版本库，即spring-boot-dependencies.pom中的版本库</li>
+</ul>
+<h3 id="启动器："><a href="#启动器：" class="headerlink" title="启动器："></a><strong>启动器：</strong></h3><ul>
+<li><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动器：说白了就是SpringBoot的启动场景；</p>
+</li>
+<li><p>比如spring-boot-starter-web，它就会帮我们自动导入web环境所有的依赖！</p>
+</li>
+<li><p>springboot会将所有的功能场景，都变成一个个的启动器</p>
+</li>
+<li><p>我们要使用什么功能，就只需要找到对应的启动器就可以了 <code>starter</code></p>
+</li>
+</ul>
+<h3 id="主程序："><a href="#主程序：" class="headerlink" title="主程序："></a><strong>主程序：</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@SpringBootApplication：标注这个类是一个springboot的应用</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstSpringbootApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将springboot应用启动</span></span><br><span class="line">        SpringApplication.run(FirstSpringbootApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-注解："><a href="#1-注解：" class="headerlink" title="1.注解："></a>1.注解：</h4><ul>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootConfiguration</span>：springboot的配置</span><br><span class="line">	<span class="meta">@Configuration</span>： spring配置类</span><br><span class="line">		<span class="meta">@Component</span>： 说明这一是一个组件</span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span>： 自动配置</span><br><span class="line">	<span class="meta">@AutoConfigurationPackage</span>： 自动配置包</span><br><span class="line">		<span class="meta">@Import</span>(&#123;Registrar.class&#125;)： 导入注册器</span><br><span class="line">    <span class="meta">@Import</span>(&#123;AutoConfigurationImportSelector.class&#125;)： 自动配置导入选择器</span><br><span class="line">    </span><br><span class="line"><span class="comment">//获取所有的配置</span></span><br><span class="line">List&lt;String&gt; configurations = getCandidateConfigurations(annotationMetadata, attributes);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>获取候选的配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> List&lt;String&gt; <span class="title">getCandidateConfigurations</span><span class="params">(AnnotationMetadata metadata, AnnotationAttributes attributes)</span> </span>&#123;</span><br><span class="line">		List&lt;String&gt; configurations = SpringFactoriesLoader.loadFactoryNames(getSpringFactoriesLoaderFactoryClass(),</span><br><span class="line">				getBeanClassLoader());</span><br><span class="line">		Assert.notEmpty(configurations, <span class="string">"No auto configuration classes found in META-INF/spring.factories. If you are using a custom packaging, make sure that file is correct."</span>);</span><br><span class="line">		<span class="keyword">return</span> configurations;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Properties properties = PropertiesLoaderUtils.loadProperties(resource);</span><br><span class="line">所有的资源加载到配置类中！</span><br></pre></td></tr></table></figure>
+
+<p><strong>结论：</strong></p>
+<p>springboot所有自动配置都是在启动的时候扫描并加载的：<code>sprnig.factories</code>中所有的类不一定生效，因为有些类是有@ConditionalOnXXX才会生效，当starter未导入相应的包时，<code>sprnig.factories</code>中对应的配置类就不生效。</p>
+<ol>
+<li>springboot在启动的时候，从类路径下/META-INF/sprnig.factories获取指定的配置类</li>
+<li>将这些自动配置的类导入容器（但并不是所有的自动配置类都会被导入容器，因为@ConditionalOnXXX注解，也就是只有通过starter导入了使得@ConditionalOnXXX条件成立时的包时，相应的自动配置类才会被导入容器），自动配置就会生效，帮我们自动配置</li>
+<li>以前我们需要配置的东西，现在springboot帮我们做了！</li>
+<li>整个javaEE，解决方案和自动配置的东西都在spring-boot-autoconfigure-x.x.x.Release.jar包下</li>
+<li>它会把所有需要导入的组件，以类名的方式返回，这些组件都会被添加到容器</li>
+<li>容器中也会存在非常多的xxxAutoConfiguration的文件（@Bean），就是这些类给容器中导入了这个场景需要的所有组件；并自动配置，@Configuration</li>
+<li>有了自动配置类，免去了我们手动编写配置文件的工作！</li>
+</ol>
+<h4 id="2-run方法"><a href="#2-run方法" class="headerlink" title="2.run方法"></a>2.run方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将springboot应用启动</span></span><br><span class="line">        SpringApplication.run(FirstSpringbootApplication.class, args);<span class="comment">//run方法</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>SpringApplication.run分析：分析该方法主要两部分，一部分是SpringApplication的实例化，二是run方法的执行；</p>
+<p>SpringApplication类主要做了以下四件事：</p>
+<ul>
+<li>1.推断应用的类型是普通的项目还是Web项目</li>
+<li>2.查找并加载所有可用初始化器，设置到initializers属性中</li>
+<li>3.找出所有的应用程序监听器，设置到listeners属性中</li>
+<li>4.推断并设置main方法的定义类，找到运行的主类</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210222150350218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>面试时如果遇到问题：关于SpringBoot，谈谈你的理解：</p>
+<ul>
+<li><p>自动化装配</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">全面接管SpringMVC的配置！</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>run()—&gt;就说这四步</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 1.推断应用的类型是普通的项目还是Web项目</span><br><span class="line">- 2.查找并加载所有可用初始化器，设置到initializers属性中</span><br><span class="line">- 3.找出所有的应用程序监听器，设置到listeners属性中</span><br><span class="line">- 4.推断并设置main方法的定义类，找到运行的主类</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="SpringBoot配置"><a href="#SpringBoot配置" class="headerlink" title="SpringBoot配置"></a>SpringBoot配置</h2><p>SpringBoot使用一个全局的配置文件，配置文件名称是固定的</p>
+<ul>
+<li>application.properties<ul>
+<li>语法结构：key=value</li>
+</ul>
+</li>
+<li>application.yaml<ul>
+<li>语法结构：key: 空格 value</li>
+</ul>
+</li>
+</ul>
+<p><font color="orange">配置文件的作用：</font>修改SpringBoot自动配置的默认值，因为SpringBoot在底层都给我们自动配置好了；</p>
+<h3 id="yaml配置"><a href="#yaml配置" class="headerlink" title="yaml配置"></a>yaml配置</h3><p><strong><font color="red">yaml可以直接给实体类赋值！</font></strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20210222150412956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210222150422994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>使用yaml的配置方式如下图所示：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222150439633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><strong><font color="orange">以后你会发现，很多<font color="blue">配置类</font>都会通过yaml去赋值，比如redis、templates等</font></strong></p>
+<p><strong>@ConfigurationProperties作用：</strong></p>
+<ul>
+<li>将配置文件中配置的属性的值，映射到这个组件中；</li>
+<li>告诉springBoot将本类中的所有属性和配置文件中相关的配置项进行绑定</li>
+<li>参数prefix=“person”：与配置文件中的person下面的所有属性一一对应</li>
+<li>只有这个组件是容器中的组件，才能使用容器提供的@ConfigurationProperties功能</li>
+</ul>
+<h3 id="properties配置"><a href="#properties配置" class="headerlink" title=".properties配置"></a>.properties配置</h3><p>当然，实际上.properties文件也是可以实现与yaml文件一样的作用，如下图所示：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222150506409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="综上："><a href="#综上：" class="headerlink" title="综上："></a>综上：</h3><p>给配置类/实体类中属性赋值的方式有：</p>
+<ol>
+<li>@Value注解</li>
+<li>通过yaml配置文件赋值（<font color="orange">推荐这种方式</font>）</li>
+<li>通过properties配置文件赋值</li>
+</ol>
+<p>使用基于@ConfigurationProperties(prefix = “xxx”)注解的yaml配置方法与基于@Value注解的properties配置方法比较： </p>
+<p><img src="https://img-blog.csdnimg.cn/2021022215052448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul>
+<li>配置yaml和配置properties都可以获取到值，强烈推荐yml</li>
+<li>如果我们在某个业务中，只需要获取配置文件中的某个值，可以使用以下@Value</li>
+<li>如果说，我们专门编写了一个JavaBean来和配置文件进行映射，就可以直接使用@ConfigurationProperties，不要犹豫！</li>
+</ul>
+<h2 id="JSR303校验"><a href="#JSR303校验" class="headerlink" title="JSR303校验"></a>JSR303校验</h2><p>该校验使用的注解有@Validated，还有与该注解配置使用的注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotNull</span>(message=<span class="string">"，名字不能为空"</span>)</span><br><span class="line"><span class="keyword">private</span> String username;</span><br><span class="line"><span class="meta">@Max</span>(value=<span class="number">120</span>,message=<span class="string">"年龄最大不能超过120"</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"><span class="meta">@Email</span>(message=<span class="string">"邮件格式错误"</span>)</span><br><span class="line"><span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line"><span class="comment">//空检查</span></span><br><span class="line"><span class="meta">@Null</span>		<span class="comment">//验证对象是否为null</span></span><br><span class="line"><span class="meta">@NotNull</span>	<span class="comment">//验证对象是否不为null，无法检查长度为0的字符串</span></span><br><span class="line"><span class="meta">@NotBlank</span>	<span class="comment">//检查约束字符串是不是null以及被Trim的长度是否大于0，只对字符串，且会去掉前后空格</span></span><br><span class="line"><span class="meta">@NotEmpty</span>	<span class="comment">//检查约束元素是否为null或者empty</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Boolean检查</span></span><br><span class="line"><span class="meta">@AssertTrue</span>		<span class="comment">//验证Boolean对象是否为true</span></span><br><span class="line"><span class="meta">@AssertFalse</span>	<span class="comment">//验证Boolean对象是否为false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//长度检查</span></span><br><span class="line"><span class="meta">@Size</span>(min= , max= )	<span class="comment">//验证对象（Array,Collection,Map,String）长度是否在给定的范围之内</span></span><br><span class="line"><span class="meta">@Length</span>(min= ,max= )<span class="comment">//验证被注解的字符串的长度是否在min和max之间</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//日期检查</span></span><br><span class="line"><span class="meta">@Past</span>		<span class="comment">//验证Date和Calendar对象是否在当前时间之前</span></span><br><span class="line"><span class="meta">@Future</span>		<span class="comment">//验证Date和Calendar对象是否在当前时间之后</span></span><br><span class="line"><span class="meta">@Pattern</span>	<span class="comment">//验证String对象是否符合正则表达式的规则</span></span><br><span class="line"></span><br><span class="line">等等...</span><br><span class="line">除此之外，我们还可以自定义一些数据校验规则</span><br></pre></td></tr></table></figure>
+
+<p>源码位置：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222150555305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>更过见链接：<a href="https://www.jianshu.com/p/554533f88370" target="_blank" rel="noopener">https://www.jianshu.com/p/554533f88370</a></p>
+<p>需要在pom.xml中引入依赖项：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-validation<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h3><p>通过@Validated以及@Email注解要求获取的字段必须是邮件格式，但是在yml中给定的字段不是邮件格式，使得测试运行报错：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222150759300.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210222150911588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="多环境配置以及配置文件位置："><a href="#多环境配置以及配置文件位置：" class="headerlink" title="多环境配置以及配置文件位置："></a>多环境配置以及配置文件位置：</h2><p>可以在哪些地方写配置文件：路径<code>file</code>指的是工程的根目录</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222150932310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><font color="red">查找这四个配置文件的顺序是如上图的1234所示！假设1234都有相同的配置项，那么1中的配置项会覆盖234中的配置项</font></p>
+<ul>
+<li>路径<code>file:./config</code>指的是</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210222151001530.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>路径<code>file:./</code>指的是</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210222151020389.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li><p>路径<code>classpath:/config/</code>指的是</p>
+<p>所谓类路径（classpath）：指的是java或resource这两路</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210222151041690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>所以<code>classpath:/config/</code>指的是</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222151059520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>路径<code>classpath:/</code>指的就是默认生成的那个applicaiton.properties了</li>
+</ul>
+<h3 id="properties文件实现不同开发环境的配置"><a href="#properties文件实现不同开发环境的配置" class="headerlink" title=".properties文件实现不同开发环境的配置"></a>.properties文件实现不同开发环境的配置</h3><p><font color="red">现实开发中，可能针对不同的环境，比如测试环境/开发环境，会有多个配置文件：</font><br><img src="https://img-blog.csdnimg.cn/2021022215114764.png#pic_center" alt="在这里插入图片描述"></p>
+<p>激活dev开发环境，只用如下方所示写法即可，test开发环境的话则换成test即可，在默认的配置文件application.properties中配置需要激活的配置文件：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222151204795.png#pic_center" alt="在这里插入图片描述"></p>
+<p>比如：test环境与dev环境用的数据库不同，那么肯定就要使用不同的数据库配置嘛！</p>
+<h3 id="yaml文件实现不同开发环境的配置"><a href="#yaml文件实现不同开发环境的配置" class="headerlink" title="yaml文件实现不同开发环境的配置"></a>yaml文件实现不同开发环境的配置</h3><p>yaml使用一个文件即可实现上述的三个文件的作用：通过<font color="orange">多文档模块</font>，即通过三个横杠符号来实现！<code>---</code></p>
+<p><img src="https://img-blog.csdnimg.cn/2021022215122319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="自动配置原理再理解"><a href="#自动配置原理再理解" class="headerlink" title="自动配置原理再理解"></a>自动配置原理再理解</h2><h3 id="properties-yaml的配置文件与spring-factories下的配置类之间有什么联系？"><a href="#properties-yaml的配置文件与spring-factories下的配置类之间有什么联系？" class="headerlink" title=".properties/.yaml的配置文件与spring.factories下的配置类之间有什么联系？"></a>.properties/.yaml的配置文件与spring.factories下的配置类之间有什么联系？</h3><p>在.properties/.yaml的配置文件中能配置的东西，都存在一个固定的规律，它们都是存在于xxxproperties类中的属性。</p>
+<p><font color="red">具体的逻辑就是spring.factories下的xxxAutoConfiguration配置类与xxxproperties类是绑定的，然后xxxproperties又是与.properties/.yaml等配置文件进行绑定的！</font>我们就可以使用自定义配置了！</p>
+<p><font color="orange"> 一旦spring.factories中的某个配置类生效；这个配置类就会给容器中添加各种组件；这些组件的属性是从对应的xxxproperties类中获取的，这些类里面的每一个属性又是和.properties/.yaml配置文件绑定的；</font></p>
+<p><img src="https://img-blog.csdnimg.cn/20210222151305713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="如何看哪些配置类生效了哪些没有生效？"><a href="#如何看哪些配置类生效了哪些没有生效？" class="headerlink" title="如何看哪些配置类生效了哪些没有生效？"></a>如何看哪些配置类生效了哪些没有生效？</h3><p>在.properties/.yaml配置文件中加上debug=ture即可看到相关日志了：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222151334649.png#pic_center" alt="在这里插入图片描述"></p>
+<p>生效的：</p>
+<p><img src="https://img-blog.csdnimg.cn/2021022215135077.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>等等等…</p>
+<p>未生效的：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210222151409663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODg3NzMz,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>等等等…</p>
+      
+    </div>
+    
+    
+    
+
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  
+	</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/22/新建spring-boot项目后maven插件画红色波浪线问题/" rel="next" title="新建spring boot项目后maven插件画红色波浪线问题">
+                <i class="fa fa-chevron-left"></i> 新建spring boot项目后maven插件画红色波浪线问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/27/SpringBoot学习笔记（二）/" rel="prev" title="SpringBoot学习笔记（二）">
+                SpringBoot学习笔记（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head-picture.jpg" alt="Mr.Yu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务阶段"><span class="nav-number">1.</span> <span class="nav-text">微服务阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是微服务？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是微服务？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单体应用架构？"><span class="nav-number">1.2.</span> <span class="nav-text">单体应用架构？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务架构"><span class="nav-number">1.3.</span> <span class="nav-text">微服务架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何构建微服务"><span class="nav-number">1.4.</span> <span class="nav-text">如何构建微服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个SpringBoot程序"><span class="nav-number">2.</span> <span class="nav-text">第一个SpringBoot程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-通过mvn-package命令将SpringBoot项目打包成jar包"><span class="nav-number">2.1.</span> <span class="nav-text">1.通过mvn package命令将SpringBoot项目打包成jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-到该jar包的同级目录下通过运行命令行命令来运行该jar包"><span class="nav-number">2.2.</span> <span class="nav-text">2.到该jar包的同级目录下通过运行命令行命令来运行该jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-之后通过浏览器访问对应URL网页，发现成功执行！"><span class="nav-number">2.3.</span> <span class="nav-text">3.之后通过浏览器访问对应URL网页，发现成功执行！</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在applocation-properties文件中进行相关配置"><span class="nav-number">3.</span> <span class="nav-text">如何在applocation.properties文件中进行相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在库文件中找到spring-boot-autoconfigure文件"><span class="nav-number">3.1.</span> <span class="nav-text">1.在库文件中找到spring-boot-autoconfigure文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-找到RedisAutoCinfiguration文件"><span class="nav-number">3.2.</span> <span class="nav-text">2.找到RedisAutoCinfiguration文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-找到标有-EnableConfigurationProperties注解"><span class="nav-number">3.3.</span> <span class="nav-text">3.找到标有@EnableConfigurationProperties注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-以spring-redis为前缀，配置相应的属性即可"><span class="nav-number">3.4.</span> <span class="nav-text">4.以spring.redis为前缀，配置相应的属性即可</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件失败了，就再install一下"><span class="nav-number">4.</span> <span class="nav-text">插件失败了，就再install一下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理初探"><span class="nav-number">5.</span> <span class="nav-text">原理初探</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pom-xml："><span class="nav-number">5.1.</span> <span class="nav-text">pom.xml：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动器："><span class="nav-number">5.2.</span> <span class="nav-text">启动器：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主程序："><span class="nav-number">5.3.</span> <span class="nav-text">主程序：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-注解："><span class="nav-number">5.3.1.</span> <span class="nav-text">1.注解：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-run方法"><span class="nav-number">5.3.2.</span> <span class="nav-text">2.run方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot配置"><span class="nav-number">6.</span> <span class="nav-text">SpringBoot配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yaml配置"><span class="nav-number">6.1.</span> <span class="nav-text">yaml配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#properties配置"><span class="nav-number">6.2.</span> <span class="nav-text">.properties配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综上："><span class="nav-number">6.3.</span> <span class="nav-text">综上：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">6.4.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSR303校验"><span class="nav-number">7.</span> <span class="nav-text">JSR303校验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试："><span class="nav-number">7.1.</span> <span class="nav-text">测试：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多环境配置以及配置文件位置："><span class="nav-number">8.</span> <span class="nav-text">多环境配置以及配置文件位置：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#properties文件实现不同开发环境的配置"><span class="nav-number">8.1.</span> <span class="nav-text">.properties文件实现不同开发环境的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yaml文件实现不同开发环境的配置"><span class="nav-number">8.2.</span> <span class="nav-text">yaml文件实现不同开发环境的配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动配置原理再理解"><span class="nav-number">9.</span> <span class="nav-text">自动配置原理再理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#properties-yaml的配置文件与spring-factories下的配置类之间有什么联系？"><span class="nav-number">9.1.</span> <span class="nav-text">.properties/.yaml的配置文件与spring.factories下的配置类之间有什么联系？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何看哪些配置类生效了哪些没有生效？"><span class="nav-number">9.2.</span> <span class="nav-text">如何看哪些配置类生效了哪些没有生效？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Yu</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

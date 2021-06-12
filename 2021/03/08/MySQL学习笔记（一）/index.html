@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL学习笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2021/03/08/MySQL学习笔记（一）/index.html">
+<meta property="og:site_name" content="MTHGH">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-06-12T03:28:36.568Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL学习笔记（一）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/03/08/MySQL学习笔记（一）/">
+
+
+
+
+
+  <title>MySQL学习笔记（一） | MTHGH</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MTHGH</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/08/MySQL学习笔记（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Yu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/head-picture.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MTHGH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL学习笔记（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-08T10:03:40+08:00">
+                2021-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL学习/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="1-初识MySQL"><a href="#1-初识MySQL" class="headerlink" title="1.初识MySQL"></a>1.初识MySQL</h2><p>JavaEE：企业级Java开发 Web</p>
+<p>前端（页面：展示，数据！）</p>
+<p>后台（连接点：连接数据库JDBC，连接前端（控制，控制视图跳转，和给前端转递数据））</p>
+<p>数据库（存数据）</p>
+<h3 id="1-1为什么学数据库"><a href="#1-1为什么学数据库" class="headerlink" title="1.1为什么学数据库"></a>1.1为什么学数据库</h3><p>1.岗位需求</p>
+<p>2.现在的世界，大数据时代~</p>
+<p><font color="red">3.数据库是所有软件体系中最核心的存在！</font></p>
+<h3 id="1-2什么是数据库"><a href="#1-2什么是数据库" class="headerlink" title="1.2什么是数据库"></a>1.2什么是数据库</h3><p>数据库（DB：DataBase）</p>
+<p>概念：数据仓库（<font color="red">是一款软件</font>：安装在操作系统（windows、linux、mac…）之上！）SQL：可以存大量数据，500万！</p>
+<p>作用：存储数据，管理数据！</p>
+<h3 id="1-3-DBMS"><a href="#1-3-DBMS" class="headerlink" title="1.3 DBMS"></a>1.3 DBMS</h3><p><strong>关系型数据库：类似于Excel样的行和列组成</strong> （SQL）</p>
+<ul>
+<li>MySQL、Oracle、SqlServer、DB2</li>
+<li>通过表和表之间，行和列之间的关系进行数据的存储。如：学员信息表、考勤表…</li>
+</ul>
+<p><strong>非关系型数据库：{key：value}  (NoSQL)</strong></p>
+<ul>
+<li>Redis、MongoDB</li>
+<li>非关系型数据库：对象存储，通过对象的自身属性来决定！</li>
+</ul>
+<p><font color="red"><strong>DBMS（数据库管理系统）</strong></font></p>
+<ul>
+<li>数据库的管理软件，它可以科学有效的管理我们的数据。维护和获取数据。</li>
+<li><font color="red">MySQL：本质是数据库管理系统！</font>数据也是存入其中</li>
+</ul>
+<h3 id="1-4MySQL简介"><a href="#1-4MySQL简介" class="headerlink" title="1.4MySQL简介"></a>1.4MySQL简介</h3><p>MySQL是一个<font color="red">关系型数据库管理系统给</font></p>
+<p>开源的数据库软件</p>
+<p>体积小、速度快、总体拥有成本低</p>
+<p>适用于中小型网站、或者大型网站（集群！）</p>
+<p>官网：<a href="https://www.mysql.com/" target="_blank" rel="noopener">https://www.mysql.com/</a></p>
+<h3 id="1-5安装MySQL"><a href="#1-5安装MySQL" class="headerlink" title="1.5安装MySQL"></a>1.5安装MySQL</h3><p>1.解压</p>
+<p>2.在环境变量中加入mysql解压后的bin目录路径</p>
+<p>3.配置环境变量</p>
+<p>4.新建mysql配置文件.ini</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置端口3306（mysql的默认端口为3306）</span></span><br><span class="line"></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"></span><br><span class="line"><span class="attr">basedir</span>=D:\MySQL\mysql-<span class="number">8.0</span>.<span class="number">19</span>-winx64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"></span><br><span class="line"><span class="attr">datadir</span>=D:\MySQL\mysql-<span class="number">8.0</span>.<span class="number">19</span>-winx64\data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许连接失败的次数。</span></span><br><span class="line"></span><br><span class="line"><span class="attr">max_connect_errors</span>=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql服务器使用的字符集，默认为UTF8</span></span><br><span class="line"></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"></span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="section">[client]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql客户端连接服务端时默认使用的端口</span></span><br><span class="line"></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure>
+
+<p>5.启动管理员模式下的CMD，并切换到mysql下的bin目录，然后输入<font color="red">mysqld -install</font> （安装mysql）</p>
+<p>6.在输入<code>mysql --initialize-insecure --user=mysql</code> 初始化数据文件</p>
+<p>7.然后再次打开cmd，并输入<code>net start mysql</code> 以<font color="red">启动mysql服务</font>，然后输入 <code>mysql -u root -p</code> 进入mysql管理界面（密码可为空）</p>
+<p>8.修改密码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--执行这个sql语句以修改密码--</span></span><br><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> <span class="keyword">authentication</span> <span class="keyword">string</span>=<span class="keyword">password</span>(<span class="string">'123456'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span> <span class="keyword">and</span> Host=<span class="string">'localhost'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>之后输入：<code>flush privileges;</code></p>
+<p>9.重启mysql，即执行：<code>net stop mysql</code> 命令和 <code>net start mysql</code> 命令</p>
+<h3 id="1-6连接数据库"><a href="#1-6连接数据库" class="headerlink" title="1.6连接数据库"></a>1.6连接数据库</h3><p>命令行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-------------连接数据库--------------</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"><span class="comment">-------------更新数据库密码--------------</span></span><br><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> <span class="keyword">authentication</span> <span class="keyword">string</span>=<span class="keyword">password</span>(<span class="string">'123456'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span> <span class="keyword">and</span> Host=<span class="string">'localhost'</span>;</span><br><span class="line"><span class="comment">-------------刷新权限--------------</span></span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br><span class="line"><span class="comment">-------------查看所有数据库--------------</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">database</span>;</span><br><span class="line"><span class="comment">-------------使用某一个数据库（切换数据库）--------------</span></span><br><span class="line"><span class="keyword">use</span> (数据库名);</span><br><span class="line"><span class="comment">-------------查看所使用数据库中的所有表--------------</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</span><br><span class="line"><span class="comment">-------------显示数据库中某一个表的详细信息--------------</span></span><br><span class="line"><span class="keyword">describe</span> (表名);</span><br><span class="line"><span class="comment">-------------创建一个数据库--------------</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> (数据库名字);</span><br><span class="line"><span class="comment">-------------退出MySQL连接--------------</span></span><br><span class="line">exit;</span><br></pre></td></tr></table></figure>
+
+<p>DDL：数据库定义语言</p>
+<p>DML：数据库操作语言</p>
+<p>DQL：数据库查询语言</p>
+<p>DCL：数据库控制语言</p>
+<h2 id="2-操作数据库"><a href="#2-操作数据库" class="headerlink" title="2.操作数据库"></a>2.操作数据库</h2><p>操作数据库》操作数据库中的表》操作数据库中表的数据</p>
+<p><font color="red">mysql不区分大小写</font></p>
+<h3 id="2-1操作数据库（了解即可）"><a href="#2-1操作数据库（了解即可）" class="headerlink" title="2.1操作数据库（了解即可）"></a>2.1操作数据库（了解即可）</h3><p>1.创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--此处的中括号中[if not exists]命令指的是可选的</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> [<span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span>] <span class="string">`chichi`</span>;</span><br></pre></td></tr></table></figure>
+
+<p>2.删除数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> [<span class="keyword">if</span> <span class="keyword">exists</span>] <span class="string">`chichi`</span>;</span><br></pre></td></tr></table></figure>
+
+<p>3.使用数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="string">`chichi`</span>;</span><br></pre></td></tr></table></figure>
+
+<p>4.查看数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--查看所有的数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2数据库的列的数据类型"><a href="#2-2数据库的列的数据类型" class="headerlink" title="2.2数据库的列的数据类型"></a>2.2数据库的列的数据类型</h3><h4 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h4><ul>
+<li>tinyint         十分小的数据    1个字节</li>
+<li>smallint      较小的数据     2个字节</li>
+<li>mediumint      中等大小的数据    3个字节</li>
+<li><strong>int                 标准的整数          4个字节（常用的，与java中的int类型对应）</strong></li>
+</ul>
+<p>注意：int(11)指的是什么？答：它不是指能存储的数据的最大位数是11位，而是指显示的宽度是11位。就相当于int(3)，它的<font color="red">显示位宽</font>为3，它是int类型的，在mysql中最大值2^32-1（4个字节），而不是说它只能显示三位大小的数！</p>
+<ul>
+<li>bigint            较大的整数          8个字节（与java中的long类型对应）</li>
+<li>float              浮点数                  4个字节</li>
+<li>double         浮点数                  8个字节</li>
+<li>decimal       字符串形式的浮点是      金融计算的时候，一般使用decimal</li>
+</ul>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><ul>
+<li>char                    字符串是固定大小      0-255</li>
+<li><strong>varchar             可变字符串        0-65535    （常用的：与java中的String对应）</strong></li>
+</ul>
+<p><font color="red">注意：而varchar(20)指的则是只能最多存储20位的字符，与int(20)不同</font></p>
+<ul>
+<li>tinytext             微型文本          2^8-1</li>
+<li>text                   文本串              2^16-1        （保存大文本）</li>
+</ul>
+<h4 id="时间日期"><a href="#时间日期" class="headerlink" title="时间日期"></a>时间日期</h4><p>java中的时间日期类为：<code>java.util.Data</code></p>
+<ul>
+<li>date             YYYY-MM-DD       日期格式</li>
+<li>time             HH：mm：ss       时间格式</li>
+<li><strong>datetime     YYYY-MM-DD  HH：mm：ss       最常用的时间格式</strong></li>
+<li><strong>timestamp    时间戳（1970.01.01到现在的毫秒数！）      也较为常用</strong></li>
+<li>year      年份表示</li>
+</ul>
+<h4 id="null"><a href="#null" class="headerlink" title="null"></a>null</h4><ul>
+<li>没有值，未知</li>
+<li><font color="red">注意：不要使用null进行运算，结果为null</font></li>
+</ul>
+<h4 id="COLLATE-utf8-general-ci的含义"><a href="#COLLATE-utf8-general-ci的含义" class="headerlink" title="COLLATE utf8_general_ci的含义"></a>COLLATE utf8_general_ci的含义</h4><p>指地是校验规则为：utf8_general_ci</p>
+<p>ci是：case insensitive的缩写，指大小写不敏感</p>
+<h3 id="2-3数据库的字段属性（重点）"><a href="#2-3数据库的字段属性（重点）" class="headerlink" title="2.3数据库的字段属性（重点）"></a>2.3数据库的字段属性（重点）</h3><p><font color="red">Unsigned：</font></p>
+<ul>
+<li>无符号整数</li>
+<li>声明了该列不能为负数</li>
+</ul>
+<p><font color="red">zreofill：</font></p>
+<ul>
+<li>0填充的（假设写一个长度为10的int类型int(10)的值为1，那么会自动用0填充成长度为0000000001）</li>
+<li>即不足的位数，使用0来填充       如：int(3)      那么5会变为005</li>
+</ul>
+<p><font color="red">自增：</font></p>
+<ul>
+<li>自动在上一条记录的主键值基础上+1</li>
+<li>通常用来设计唯一的主键（必须是整数类型）</li>
+<li>也可自定义设计主键自增的起始值和步长</li>
+</ul>
+<p><font color="red">非空 null和not null：</font></p>
+<ul>
+<li>假设设置为not null，如果不给它赋值，就会报错！</li>
+<li>null，如果不填写，默认就是null！</li>
+</ul>
+<p><font color="red">默认（default）：</font></p>
+<ul>
+<li>设置默认值</li>
+</ul>
+<p><font color="red">id</font></p>
+<ul>
+<li>自增主键</li>
+</ul>
+<p><strong>每一个表都必须包含以下五个字段！未来做项目用的，表示一个记录存在的意义！</strong></p>
+<p><font color="red">id  主键</font></p>
+<p><font color="red">version（即每一条记录都有自己对应的一个版本）</font>这个东西可以用来做乐观锁！</p>
+<p><font color="red">is_delete：</font>伪删除</p>
+<p><font color="red">gmt_create    创建时间</font></p>
+<p><font color="red">gmt_update   修改时间</font></p>
+<h3 id="2-4创建数据库表-重点"><a href="#2-4创建数据库表-重点" class="headerlink" title="2.4创建数据库表(重点)"></a>2.4创建数据库表(重点)</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span> <span class="string">`student`</span>(</span><br><span class="line">    <span class="string">`student_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">not</span> <span class="literal">null</span> AUTO_INCREMENT <span class="keyword">comment</span> <span class="string">'学号'</span>,</span><br><span class="line">    <span class="string">`password`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_general_ci <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'0000'</span> <span class="keyword">COMMENT</span> <span class="string">'密码'</span>,</span><br><span class="line">    <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_general_ci <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">"张三"</span> <span class="keyword">COMMENT</span> <span class="string">'姓名'</span>,</span><br><span class="line">    <span class="string">`gender`</span> <span class="built_in">varchar</span>(<span class="number">2</span>) <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_general_ci <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">"男"</span> <span class="keyword">COMMENT</span> <span class="string">'性别'</span>,</span><br><span class="line">    <span class="string">`birthday`</span> <span class="built_in">TIMESTAMP</span> <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">COMMENT</span> <span class="string">'出生日期'</span>,</span><br><span class="line">    <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_general_ci <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">COMMENT</span> <span class="string">'地址'</span>,</span><br><span class="line">    <span class="string">`email`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_general_ci <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">COMMENT</span> <span class="string">'邮件'</span>,</span><br><span class="line">		primary <span class="keyword">key</span> (<span class="string">`student_id`</span>) <span class="keyword">using</span> BTREE</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">set</span> = utf8 <span class="keyword">collate</span> = utf8_general_ci;</span><br></pre></td></tr></table></figure>
+
+<h4 id="建表格式："><a href="#建表格式：" class="headerlink" title="建表格式："></a>建表格式：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> [<span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span>] <span class="string">`表名`</span> (</span><br><span class="line">	<span class="string">`字段名1`</span> 列数据类型 [属性] [索引] [注释],</span><br><span class="line">    <span class="string">`字段名2`</span> 列数据类型 [属性] [索引] [注释],</span><br><span class="line">    ······</span><br><span class="line">    <span class="string">`字段名n`</span> 列数据类型 [属性] [索引] [注释],</span><br><span class="line">    primary <span class="keyword">key</span> (<span class="string">`字段名x`</span>) <span class="keyword">using</span> btree      <span class="comment">--最后一行不加`,`号</span></span><br><span class="line">)	[<span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>] [<span class="keyword">default</span> <span class="built_in">character</span> <span class="keyword">set</span>=utf8] [<span class="keyword">collate</span>=utf8-<span class="keyword">general</span>-ci;] <span class="comment">--这几个属性也是可选的，可不写</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查看创建数据库-表的sql语句"><a href="#查看创建数据库-表的sql语句" class="headerlink" title="查看创建数据库/表的sql语句"></a>查看创建数据库/表的sql语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">database</span> <span class="string">`数据库名`</span>;   <span class="comment">--查看创建数据库的语句</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="string">`数据库中的表名`</span>;   <span class="comment">--查看创建数据库中的表的语句</span></span><br><span class="line">desc `数据库中的表名`;   <span class="comment">--显示表结构</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5数据表的类型"><a href="#2-5数据表的类型" class="headerlink" title="2.5数据表的类型"></a>2.5数据表的类型</h3><p>InnoDB：现在默认使用的</p>
+<p>MyISAM：早些年使用的</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>MyISAM</th>
+<th align="left">InnoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事务支持</td>
+<td>不支持（现在新版的则支持）</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td>数据行锁定</td>
+<td>不支持（因为MyISAM是表锁）</td>
+<td align="left">支持（InnoDB是行锁）</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>不支持</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td>全文索引（应用：如百度搜索）</td>
+<td>支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td>表空间大小</td>
+<td>较小</td>
+<td align="left">较大（约为MyISAM两倍）</td>
+</tr>
+</tbody></table>
+<p><strong>常规使用操作：</strong></p>
+<ul>
+<li>MyISAM      节约空间，速度较快</li>
+<li>InnoDB       安全性高，支持事务，多表多用户操作</li>
+</ul>
+<h4 id="在屋里空间存在的位置"><a href="#在屋里空间存在的位置" class="headerlink" title="在屋里空间存在的位置"></a>在屋里空间存在的位置</h4><p>所有的数据库文件都存在data目录下</p>
+<p>本质还是文件的存储！</p>
+<p><font color="red">MySQL在data目录下数据库中对应的表全是.ibd文件！</font></p>
+<h4 id="设置数据库表的字符集"><a href="#设置数据库表的字符集" class="headerlink" title="设置数据库表的字符集"></a>设置数据库表的字符集</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">character <span class="keyword">set</span> = uts8</span><br></pre></td></tr></table></figure>
+
+<p>不设置的话，会使用mysql默认的字符集编码~（不支持中文！）</p>
+<p>在my.ini中配置默认的编码！</p>
+<h3 id="2-6修改和删除表"><a href="#2-6修改和删除表" class="headerlink" title="2.6修改和删除表"></a>2.6修改和删除表</h3><h4 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="string">`表名`</span> <span class="keyword">rename</span> <span class="keyword">as</span> <span class="string">`表名1`</span>;    <span class="comment">--修改表的名字</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="string">`表名`</span> <span class="keyword">add</span> <span class="string">`字段名`</span> [字段属性];    <span class="comment">--增加表的字段，如：alter table `student` add `age` int(11);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">----------下方为修改表的字段-----------</span></span><br><span class="line"><span class="comment">--1.修改约束(modify)</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="string">`表名`</span> <span class="keyword">modify</span> <span class="string">`字段名`</span> 字段属性;</span><br><span class="line"><span class="comment">--如：alter table `student` modify `age` varchar(11);   --即将int(11)类型的age字段改为varchar(11)类型</span></span><br><span class="line"><span class="comment">--modify能修改字段类型和约束，不能用来对字段重命名！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--2.字段重命名(change)</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="string">`表名`</span> <span class="keyword">change</span> <span class="string">`旧字段名`</span> <span class="string">`新字段名`</span> 新字段属性;</span><br><span class="line"><span class="comment">--如：alter table `student` change `age` `age1` int(1);</span></span><br><span class="line"><span class="comment">--change用来字段重命名，不能修改字段类型和约束！</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">----------删除表的字段-----------</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="string">`表名`</span> <span class="keyword">drop</span> <span class="string">`要被删除的字段名`</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">----------删除表-----------</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">exists</span> <span class="string">`表名`</span>;</span><br></pre></td></tr></table></figure>
+
+<p><font color="red"><strong>所以的创建和删除操作尽量加上判断，以免报错！</strong></font></p>
+<h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><ul>
+<li>``   字段名，使用这个符号包裹</li>
+<li>注释：– 或者 /**/</li>
+<li>sql关键字大小写不敏感，建议使用小写</li>
+</ul>
+      
+    </div>
+    
+    
+    
+
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  
+	</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/03/JDBC学习笔记/" rel="next" title="JDBC学习笔记">
+                <i class="fa fa-chevron-left"></i> JDBC学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/10/MySQL学习笔记（二）/" rel="prev" title="MySQL学习笔记（二）">
+                MySQL学习笔记（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head-picture.jpg" alt="Mr.Yu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-初识MySQL"><span class="nav-number">1.</span> <span class="nav-text">1.初识MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1为什么学数据库"><span class="nav-number">1.1.</span> <span class="nav-text">1.1为什么学数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2什么是数据库"><span class="nav-number">1.2.</span> <span class="nav-text">1.2什么是数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-DBMS"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 DBMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4MySQL简介"><span class="nav-number">1.4.</span> <span class="nav-text">1.4MySQL简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5安装MySQL"><span class="nav-number">1.5.</span> <span class="nav-text">1.5安装MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6连接数据库"><span class="nav-number">1.6.</span> <span class="nav-text">1.6连接数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-操作数据库"><span class="nav-number">2.</span> <span class="nav-text">2.操作数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1操作数据库（了解即可）"><span class="nav-number">2.1.</span> <span class="nav-text">2.1操作数据库（了解即可）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2数据库的列的数据类型"><span class="nav-number">2.2.</span> <span class="nav-text">2.2数据库的列的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数值"><span class="nav-number">2.2.1.</span> <span class="nav-text">数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串"><span class="nav-number">2.2.2.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间日期"><span class="nav-number">2.2.3.</span> <span class="nav-text">时间日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.2.4.</span> <span class="nav-text">null</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#COLLATE-utf8-general-ci的含义"><span class="nav-number">2.2.5.</span> <span class="nav-text">COLLATE utf8_general_ci的含义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3数据库的字段属性（重点）"><span class="nav-number">2.3.</span> <span class="nav-text">2.3数据库的字段属性（重点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4创建数据库表-重点"><span class="nav-number">2.4.</span> <span class="nav-text">2.4创建数据库表(重点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建表格式："><span class="nav-number">2.4.1.</span> <span class="nav-text">建表格式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看创建数据库-表的sql语句"><span class="nav-number">2.4.2.</span> <span class="nav-text">查看创建数据库/表的sql语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5数据表的类型"><span class="nav-number">2.5.</span> <span class="nav-text">2.5数据表的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在屋里空间存在的位置"><span class="nav-number">2.5.1.</span> <span class="nav-text">在屋里空间存在的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置数据库表的字符集"><span class="nav-number">2.5.2.</span> <span class="nav-text">设置数据库表的字符集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6修改和删除表"><span class="nav-number">2.6.</span> <span class="nav-text">2.6修改和删除表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改"><span class="nav-number">2.6.1.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">2.6.2.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点："><span class="nav-number">2.6.3.</span> <span class="nav-text">注意点：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Yu</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
